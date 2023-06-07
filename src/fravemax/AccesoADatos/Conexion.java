@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
      private static final String URL = "jdbc:mysql://localhost/";
-    private static final String DB = "";   //falta nombre de BD.
+    private static final String DB = "fravemax";
     private static final String USUARIO = "root";
     private static String PASSWORD = "";
     private static Connection coneccion;
