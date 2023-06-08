@@ -8,18 +8,18 @@ public class Proveedor {
     private int idProveedor;
     private String razonSocial;
     private String domicilio;
-    private int telefono;
+    private String telefono;
 
     public Proveedor() {
     }
 
-    public Proveedor(String razonSocial, String domicilio, int telefono) {
+    public Proveedor(String razonSocial, String domicilio, String telefono) {
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
 
-    public Proveedor(int idProveedor, String razonSocial, String domicilio, int telefono) {
+    public Proveedor(int idProveedor, String razonSocial, String domicilio, String telefono) {
         this.idProveedor = idProveedor;
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;
@@ -50,11 +50,11 @@ public class Proveedor {
         this.domicilio = domicilio;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     

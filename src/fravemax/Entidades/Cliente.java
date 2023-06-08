@@ -10,19 +10,19 @@ public class Cliente {
     private String apellido;
     private String nombre;
     private String domicilio;
-    private int telefono;
+    private String telefono;
 
     public Cliente() {
     }
 
-    public Cliente(String apellido, String nombre, String domicilio, int telefono) {
+    public Cliente(String apellido, String nombre, String domicilio, String telefono) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
 
-    public Cliente(int idClinte, String apellido, String nombre, String domicilio, int telefono) {
+    public Cliente(int idClinte, String apellido, String nombre, String domicilio, String telefono) {
         this.idClinte = idClinte;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -62,12 +62,19 @@ public class Cliente {
         this.domicilio = domicilio;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return "[Apellido: " + apellido + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", Telefono: " + telefono + "]\n";
+    }
+    
+    
 
 }
