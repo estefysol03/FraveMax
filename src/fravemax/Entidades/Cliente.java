@@ -6,36 +6,37 @@ package fravemax.Entidades;
  */
 public class Cliente {
 
-    private int idClinte;
+    private int idCliente;
     private String apellido;
     private String nombre;
     private String domicilio;
     private String telefono;
+    private boolean estado;
 
     public Cliente() {
     }
 
-    public Cliente(String apellido, String nombre, String domicilio, String telefono) {
+    public Cliente(String apellido, String nombre, String domicilio, String telefono, boolean estado) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
 
-    public Cliente(int idClinte, String apellido, String nombre, String domicilio, String telefono) {
-        this.idClinte = idClinte;
+    public Cliente(int idCliente, String apellido, String nombre, String domicilio, String telefono, boolean estado) {
+        this.idCliente = idCliente;
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
 
-    public int getIdClinte() {
-        return idClinte;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setIdClinte(int idClinte) {
-        this.idClinte = idClinte;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getApellido() {
@@ -70,9 +71,19 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return "[Apellido: " + apellido + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", Telefono: " + telefono + "]\n";
+        return "[Id: " + idCliente + "Apellido: " + apellido + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", Telefono: " + telefono + "]\n";
     }
     
     

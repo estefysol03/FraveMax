@@ -70,4 +70,11 @@ public class Producto {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" + "idProducto=" + idProducto + ", descripcion=" + descripcion + ", precioActual=" + precioActual + ", stock=" + stock + '}';
+    }
+    
+    
+
 }

@@ -22,7 +22,7 @@ public class ClienteData {
     //Guardar cliente
     public void guardarCliente(Cliente cli) {
 
-        String sql = "INSERT INTO cliente (apellido, nombre, domicilio, telefono) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO cliente (apellido, nombre, domicilio, telefono, estado) VALUES (?,?,?,?,?)";
 
         try {
             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -30,12 +30,13 @@ public class ClienteData {
             ps.setString(2, cli.getNombre());
             ps.setString(3, cli.getDomicilio());
             ps.setString(4, cli.getTelefono());
+            ps.setBoolean(5, cli.isEstado());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
-                cli.setIdClinte(rs.getInt("idCliente"));
+                cli.setIdCliente(rs.getInt("idCliente"));
                 JOptionPane.showMessageDialog(null, "Cliente añadido con exito.");
             }
             ps.close();
@@ -46,7 +47,7 @@ public class ClienteData {
 
     public void modificarCliente(Cliente cliente) {
 
-        String sql = "UPDATE cliente SET apellido=?, nombre =?, domicilio=?,telefono =? WHERE idCliente=?";
+        String sql = "UPDATE cliente SET apellido=?, nombre =?, domicilio=?,telefono =? WHERE idCliente=? AND estado=1";
 
         PreparedStatement ps = null;
         try {
@@ -55,7 +56,7 @@ public class ClienteData {
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getDomicilio());
             ps.setString(4, cliente.getTelefono());
-            ps.setInt(5, cliente.getIdClinte());
+            ps.setInt(5, cliente.getIdCliente());
 
             int exito = ps.executeUpdate();
 
@@ -83,7 +84,7 @@ public class ClienteData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                cliente.setIdClinte(id);
+                cliente.setIdCliente(id);
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setDomicilio(rs.getString("domicilio"));
@@ -100,7 +101,7 @@ public class ClienteData {
     
     public void eliminarCliente(int id){
         try {
-            String sql = " DELETE FROM cliente WHERE idCliente =? ";
+            String sql = " UPDATE cliente SET estado=0 WHERE idCliente =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
@@ -115,20 +116,22 @@ public class ClienteData {
         }
     }
     
-    public List<Cliente> listarAlumnos() {
+    public List<Cliente> listarClientes() {
         List<Cliente> clientes = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM cliente WHERE idCliente IS NOT NULL";
+            String sql = "SELECT * FROM cliente WHERE estado = 1";
             PreparedStatement ps = c.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
 
-                cliente.setIdClinte(rs.getInt("idCliente"));
+                cliente.setIdCliente(rs.getInt("idCliente"));
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
+                cliente.setDomicilio(rs.getString("domicilio"));
                 cliente.setTelefono(rs.getString("telefono"));
+                cliente.setEstado(true);
                 clientes.add(cliente);
             }
             ps.close();

@@ -11,16 +11,17 @@ public class Compra {
     private int idCompra;
     private Proveedor idProveedor;
     private LocalDate fecha;
+    private boolean estado;
 
     public Compra() {
     }
 
-    public Compra(Proveedor idProveedor, LocalDate fecha) {
+    public Compra(Proveedor idProveedor, LocalDate fecha, boolean estado) {
         this.idProveedor = idProveedor;
         this.fecha = fecha;
     }
 
-    public Compra(int idCompra, Proveedor idProveedor, LocalDate fecha) {
+    public Compra(int idCompra, Proveedor idProveedor, LocalDate fecha, boolean estado) {
         this.idCompra = idCompra;
         this.idProveedor = idProveedor;
         this.fecha = fecha;
@@ -49,5 +50,20 @@ public class Compra {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Compra{" + "idCompra=" + idCompra + ", idProveedor=" + idProveedor + ", fecha=" + fecha + ", estado=" + estado + '}';
+    }
+    
+    
 
 }

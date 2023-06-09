@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fravemax.AccesoADatos;
 
 import fravemax.Entidades.Producto;
@@ -16,23 +11,22 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ProductoData {
+
     private Connection c = null;
-    
-    
-    
+
     public ProductoData() {
         c = Conexion.getConexion();
- }
-    
-     public void RegistrarProductos(Producto p) {
+    }
+
+    public void registrarProductos(Producto p) {
 
         String sql = "INSERT INTO producto (descripcion,precioActual,stock,estado) VALUES (?,?,?,?)";
         try {
             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           
+
             ps.setString(1, p.getDescripcion());
             ps.setDouble(2, p.getPrecioActual());
-             ps.setInt(3,p.getStock());
+            ps.setInt(3, p.getStock());
             ps.setBoolean(4, p.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -47,13 +41,11 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Registro" + ex.getMessage());
         }
 
-     }
-     
-     
-     
-        public Producto buscarProducto(int id) {
+    }
+
+    public Producto buscarProducto(int id) {
         Producto prod = new Producto();
-        String sql = "SELECT descripcion,precioActual,Stock, FROM producto WHERE idProducto=? AND estado = 1";
+        String sql = "SELECT descripcion,precioActual,stock FROM producto WHERE idProducto=?";
 
         PreparedStatement ps = null;
         try {
@@ -64,11 +56,11 @@ public class ProductoData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-               prod.setIdProducto(id);
-                prod.setDescripcion(rs.getString("descrpcion"));
+                prod.setIdProducto(id);
+                prod.setDescripcion(rs.getString("descripcion"));
                 prod.setPrecioActual(rs.getDouble("precioActual"));
                 prod.setStock(rs.getInt("stock"));
-                prod.setEstado(true);
+      
             } else {
 
                 JOptionPane.showMessageDialog(null, "No existe el Producto");
@@ -81,8 +73,7 @@ public class ProductoData {
         return prod;
     }
 
-
-         public List<Producto> listarProductos() {
+    public List<Producto> listarProductos() {
         List<Producto> productos = new ArrayList<>();
 
         try {
@@ -90,7 +81,7 @@ public class ProductoData {
             PreparedStatement ps = c.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              Producto prod = new Producto();
+                Producto prod = new Producto();
                 prod.setIdProducto(rs.getInt("idProducto"));
                 prod.setDescripcion(rs.getString("descripcion"));
                 prod.setPrecioActual(rs.getDouble("precioActual"));
@@ -105,12 +96,10 @@ public class ProductoData {
         }
         return productos;
     }
- 
 
-
-        //modifico un producto.
-       public void modificarProducto(Producto prod) {
-        String sql = "UPDATE producto SET descripcion=?, precioActual =?, stock=? WHERE idProducto=?";
+    //modifico un producto.
+    public void modificarProducto(Producto prod) {
+        String sql = "UPDATE producto SET descripcion=?, precioActual=?, stock=? WHERE idProducto=? AND estado=1";
 
         PreparedStatement ps = null;
         try {
@@ -133,8 +122,8 @@ public class ProductoData {
         }
     }
 
-     public void eliminarProducto(int id) {
-          try {
+    public void eliminarProducto(int id) {
+        try {
             String sql = " UPDATE producto SET estado =0 WHERE idProducto =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
@@ -150,9 +139,4 @@ public class ProductoData {
         }
     }
 
-
-    }
-
-
-        
-
+}
