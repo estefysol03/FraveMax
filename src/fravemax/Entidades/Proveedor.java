@@ -2,9 +2,10 @@ package fravemax.Entidades;
 
 /**
  *
- * @author Adan
+ * @author Rafael
  */
 public class Proveedor {
+
     private int idProveedor;
     private String razonSocial;
     private String domicilio;
@@ -18,6 +19,7 @@ public class Proveedor {
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
 
     public Proveedor(int idProveedor, String razonSocial, String domicilio, String telefono, boolean estado) {
@@ -25,6 +27,7 @@ public class Proveedor {
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
 
     public int getIdProveedor() {
@@ -69,10 +72,7 @@ public class Proveedor {
 
     @Override
     public String toString() {
-        return "Proveedor{" + "idProveedor=" + idProveedor + ", razonSocial=" + razonSocial + ", domicilio=" + domicilio + ", telefono=" + telefono + '}';
+        return "Proveedor{" + "idProveedor=" + idProveedor + ", razonSocial=" + razonSocial + ", domicilio=" + domicilio + ", telefono=" + telefono + '}' + "\n";
     }
-    
-    
-    
-      
+
 }

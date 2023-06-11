@@ -2,31 +2,35 @@ package fravemax.Entidades;
 
 /**
  *
- * @author Adan
+ * @author Rafael
  */
 public class DetalleDeCompra {
+
     private int idDetalle;
     private int cantidad;
     private double precioCosto;
     private Compra idCompra;
     private Producto idProducto;
+    private boolean estado;
 
     public DetalleDeCompra() {
     }
 
-    public DetalleDeCompra(int cantidad, double precioCosto, Compra idCompra, Producto idProducto) {
+    public DetalleDeCompra(int cantidad, double precioCosto, Compra idCompra, Producto idProducto, boolean estado) {
         this.cantidad = cantidad;
         this.precioCosto = precioCosto;
         this.idCompra = idCompra;
         this.idProducto = idProducto;
+        this.estado = estado;
     }
 
-    public DetalleDeCompra(int idDetalle, int cantidad, double precioCosto, Compra idCompra, Producto idProducto) {
+    public DetalleDeCompra(int idDetalle, int cantidad, double precioCosto, Compra idCompra, Producto idProducto, boolean estado) {
         this.idDetalle = idDetalle;
         this.cantidad = cantidad;
         this.precioCosto = precioCosto;
         this.idCompra = idCompra;
         this.idProducto = idProducto;
+        this.estado = estado;
     }
 
     public int getIdDetalle() {
@@ -68,6 +72,18 @@ public class DetalleDeCompra {
     public void setIdProducto(Producto idProducto) {
         this.idProducto = idProducto;
     }
-    
-    
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleDeCompra{" + "idDetalle=" + idDetalle + ", cantidad=" + cantidad + ", precioCosto=" + precioCosto + ", idCompra=" + idCompra.getIdCompra() + ", Producto=" + idProducto.getDescripcion() + '}';
+    }
+
 }

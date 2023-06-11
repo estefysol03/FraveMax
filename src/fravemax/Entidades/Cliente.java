@@ -2,7 +2,7 @@ package fravemax.Entidades;
 
 /**
  *
- * @author Adan
+ * @author Rafael
  */
 public class Cliente {
 
@@ -21,6 +21,7 @@ public class Cliente {
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
 
     public Cliente(int idCliente, String apellido, String nombre, String domicilio, String telefono, boolean estado) {
@@ -29,6 +30,7 @@ public class Cliente {
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.estado = estado;
     }
 
     public int getIdCliente() {
@@ -78,14 +80,11 @@ public class Cliente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "[Id: " + idCliente + "Apellido: " + apellido + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", Telefono: " + telefono + "]\n";
+        return "[Id: " + idCliente + " Apellido: " + apellido + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", Telefono: " + telefono + "]\n";
     }
-    
-    
 
 }
+

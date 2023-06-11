@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author Adan
+ * @author Rafael
  */
 public class Compra {
 
@@ -19,12 +19,14 @@ public class Compra {
     public Compra(Proveedor idProveedor, LocalDate fecha, boolean estado) {
         this.idProveedor = idProveedor;
         this.fecha = fecha;
+        this.estado = estado;
     }
 
     public Compra(int idCompra, Proveedor idProveedor, LocalDate fecha, boolean estado) {
         this.idCompra = idCompra;
         this.idProveedor = idProveedor;
         this.fecha = fecha;
+        this.estado = estado;
     }
 
     public int getIdCompra() {
@@ -61,9 +63,7 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" + "idCompra=" + idCompra + ", idProveedor=" + idProveedor + ", fecha=" + fecha + ", estado=" + estado + '}';
+        return "Compra{" + "idCompra=" + idCompra + ", idProveedor=" + idProveedor.getIdProveedor() + ", fecha=" + fecha + ", estado=" + estado + '}';
     }
-    
-    
 
 }

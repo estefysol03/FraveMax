@@ -2,7 +2,7 @@ package fravemax.Entidades;
 
 /**
  *
- * @author Adan
+ * @author Rafael
  */
 public class Producto {
 
@@ -74,7 +74,5 @@ public class Producto {
     public String toString() {
         return "Producto{" + "idProducto=" + idProducto + ", descripcion=" + descripcion + ", precioActual=" + precioActual + ", stock=" + stock + '}';
     }
-    
-    
 
 }

@@ -73,7 +73,7 @@ public class ClienteData {
 
     public Cliente buscarCliente(int id) {
         Cliente cliente = new Cliente();
-        String sql = "SELECT apellido,nombre,domicilio,telefono FROM cliente WHERE idCliente=?";
+        String sql = "SELECT apellido,nombre,domicilio,telefono FROM cliente WHERE idCliente=? AND estado=1";
 
         PreparedStatement ps = null;
         try {
@@ -90,7 +90,7 @@ public class ClienteData {
                 cliente.setDomicilio(rs.getString("domicilio"));
                 cliente.setTelefono(rs.getString("telefono"));
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el Cliente");
+                JOptionPane.showMessageDialog(null, "Id de cliente no encontrado");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -98,24 +98,33 @@ public class ClienteData {
         }
         return cliente;
     }
-    
-    public void eliminarCliente(int id){
+
+    public void eliminarCliente(int id) {
+        Cliente cli = new Cliente();
+        cli = buscarCliente(id);
         try {
             String sql = " UPDATE cliente SET estado=0 WHERE idCliente =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
-            int fila = ps.executeUpdate();
 
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se Elimino el Cliente");
+            if (id == cli.getIdCliente()) {
+                int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar al Cliente " + cli.getNombre() + " " + cli.getApellido(),
+                        "Seleccione una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (confirmar == 0) {
+                    JOptionPane.showMessageDialog(null, "Cliente eliminado con exito");
+                    ps.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operacion cancelada, Cliente no eliminado");
+                }
             }
+
             ps.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Cliente");
 
         }
     }
-    
+
     public List<Cliente> listarClientes() {
         List<Cliente> clientes = new ArrayList<>();
 
@@ -141,4 +150,5 @@ public class ClienteData {
         }
         return clientes;
     }
+
 }

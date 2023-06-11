@@ -1,148 +1,108 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fravemax.AccesoADatos;
 
 import fravemax.Entidades.Cliente;
 import fravemax.Entidades.Venta;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 import javax.swing.JOptionPane;
+
 /**
  *
- * @author Adan
+ * @author Rafael
  */
 public class VentaData {
-    
-      private Connection c = null;
+
+    private Connection c = null;
 
     public VentaData() {
         c = Conexion.getConexion();
     }
-    
-  
+
     private Cliente rCliente(int id) {
-        ClienteData ad = new ClienteData();
-        return ad.buscarCliente(id);
+        ClienteData cd = new ClienteData();
+        return cd.buscarCliente(id);
     }
 
-    public void registrarVentas(Venta v) {
+    public void guardarVenta(Venta venta) {
 
-        String sql = "INSERT INTO venta (idVenta,fecha,idCliente,estado) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO venta (fecha,idCliente, estado) VALUES (?,?,?)";
+
         try {
             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setDate(1, Date.valueOf(venta.getFecha()));
+            ps.setInt(2, venta.getIdCliente().getIdCliente());
+            ps.setBoolean(3, venta.isEstado());
 
-            ps.setInt(1, v.getIdVenta());
-            ps.setDate(2,Date.valueOf(v.getFecha()));
-            ps.setInt(3, v.getIdCliente().getIdCliente());
-            ps.setBoolean(4, v.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
-                v.setIdVenta(rs.getInt("idVenta"));
-                JOptionPane.showMessageDialog(null, "Ventas Registrado");
+                venta.setIdVenta(rs.getInt("idVenta"));
+                JOptionPane.showMessageDialog(null, "Venta añadida con exito.");
             }
             ps.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Venta -" + ex.getMessage());
+        }
+    }
+
+    public void modificarVenta(Venta venta) {
+
+        String sql = "UPDATE venta SET fecha =?, idCliente=? WHERE idVenta=? AND estado=1";
+
+        PreparedStatement ps = null;
+        try {
+            ps = c.prepareStatement(sql);
+            ps.setDate(1, Date.valueOf(venta.getFecha()));
+            ps.setInt(2, venta.getIdCliente().getIdCliente());
+            ps.setInt(3, venta.getIdVenta());
+
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificacion Exitosa");
+            } else {
+                JOptionPane.showMessageDialog(null, "La Venta ingresada no existe");
+            }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ventas" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder ala tabla Venta" + ex.getMessage());
         }
-
     }
 
     public Venta buscarVenta(int id) {
-        Venta v = new Venta();
-        String sql = "SELECT fecha,IdCliente,estado FROM venta WHERE idVenta=?";
+        Venta venta = new Venta();
+        String sql = "SELECT fecha,idCliente, estado FROM venta WHERE idVenta=? AND estado=1";
 
         PreparedStatement ps = null;
+
         try {
 
             ps = c.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-             Cliente cli;
-            if (rs.next()) {
-                cli = rCliente(rs.getInt("idAlumno"));
-                v.setIdVenta(id);
-                v.setFecha(rs.getDate("fecha").toLocalDate());
-                v.setIdCliente(cli);
-                v.setEstado(rs.getBoolean("estado"));
-            } else {
-
-                JOptionPane.showMessageDialog(null, "No existe la Venta");
-
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ventas");
-        }
-        return v;
-    }
-
-    public List<Venta> listarVentas() {
-        List<Venta> productos = new ArrayList<>();
-
-        try {
-            String sql = "SELECT * FROM venta WHERE  estado = 1";  //el *trae toda la tabla de producto
-            PreparedStatement ps = c.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            //Metodo para rearmar proveedor.
             Cliente cli;
-            while (rs.next()) {
-                Venta v = new Venta();
-                cli = rCliente(rs.getInt("idCliente")); 
-                v.setIdVenta(rs.getInt("IdVenta"));
-                v.setFecha(rs.getDate("fecha").toLocalDate());
-                v.setIdCliente(cli);
-                v.setEstado(rs.getBoolean("estado"));
-                v.setEstado(true);
-                productos.add(v);   //le agregamos prod a la lista de productos
+            if (rs.next()) {
+                cli = rCliente(rs.getInt("idCliente"));
+                venta.setIdVenta(id);
+                venta.setFecha(rs.getDate("fecha").toLocalDate());
+                venta.setIdCliente(cli);
+                venta.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe la Venta");
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Venta");
         }
-        return productos;
-    }
 
-    //modifico un producto.
-    public void modificarVenta(Venta v) {
-        String sql = "UPDATE producto SET fecha=?, idCliente=? WHERE idVenta=? AND estado=1";
-
-        PreparedStatement ps = null;
-        try {
-            ps = c.prepareStatement(sql);
-            ps.setInt(1, v.getIdVenta());
-            ps.setDate(2,Date.valueOf(v.getFecha()));
-            ps.setInt(3, v.getIdCliente().getIdCliente());
-            ps.setBoolean(4, v.isEstado());
-            int exito = ps.executeUpdate();
-
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Modificado  Exitosamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "La venta no existe");
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ventas" + ex.getMessage());
-
-        }
+        return venta;
     }
 
     public void eliminarVenta(int id) {
         try {
-            String sql = " UPDATE producto SET estado =0 WHERE idVenta =? ";
+            String sql = " UPDATE venta SET estado=0 WHERE idVenta =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
@@ -153,9 +113,6 @@ public class VentaData {
             ps.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Venta");
-
         }
     }
-
 }
-
