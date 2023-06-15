@@ -109,12 +109,12 @@ public class ClienteData {
 
             if (id == cli.getIdCliente()) {
                 int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar al Cliente " + cli.getNombre() + " " + cli.getApellido(),
-                        "Seleccione una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        "BAJA DE CLIENTE", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (confirmar == 0) {
                     JOptionPane.showMessageDialog(null, "Cliente eliminado con exito");
                     ps.executeUpdate();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Operacion cancelada, Cliente no eliminado");
+                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
                 }
             }
 

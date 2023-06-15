@@ -67,7 +67,7 @@ public class ProveedorData {
 
     public Proveedor buscarProveedor(int id) {
         Proveedor pro = new Proveedor();
-        String sql = "SELECT razonSocial, domicilio,telefono FROM proveedor WHERE idProveedor=?";
+        String sql = "SELECT razonSocial, domicilio,telefono FROM proveedor WHERE idProveedor=? AND estado=1";
 
         PreparedStatement ps = null;
         try {
@@ -102,12 +102,12 @@ public class ProveedorData {
 
             if (id == p.getIdProveedor()) {
                 int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar al Proveedor " + p.getRazonSocial(),
-                        "Seleccione una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        "BAJA DE PROVEEDOR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (confirmar == 0) {
                     JOptionPane.showMessageDialog(null, "Proveedor eliminado con exito");
                     ps.executeUpdate();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Operacion cancelada, Proveedor no eliminado");
+                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
                 }
             }
             ps.close();
