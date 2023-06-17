@@ -118,15 +118,22 @@ public class ProductoData {
         }
     }
 
-    public void eliminarProducto(int id) {
+     public void eliminarProducto(int id) {
+        Producto pro = buscarProducto(id);
         try {
             String sql = " UPDATE producto SET estado =0 WHERE idProducto =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
-            int fila = ps.executeUpdate();
 
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se Elimino el Producto");
+            if (id == pro.getIdProducto()) {
+                int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar el Producto " + pro.getDescripcion() + " ",
+                        "BAJA DE PRODUCTO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (confirmar == 0) {
+                    JOptionPane.showMessageDialog(null, "Producto eliminado con exito");
+                    ps.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
+                }
             }
             ps.close();
         } catch (SQLException e) {

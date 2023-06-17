@@ -101,14 +101,22 @@ public class VentaData {
     }
 
     public void eliminarVenta(int id) {
+        Venta v = new Venta();
+        v = buscarVenta(id);
         try {
             String sql = " UPDATE venta SET estado=0 WHERE idVenta =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
-            int fila = ps.executeUpdate();
 
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se Elimino la Venta");
+            if (id == v.getIdVenta()) {
+                int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar la Venta " + v.getIdVenta(),
+                        "BAJA DE VENTA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (confirmar == 0) {
+                    JOptionPane.showMessageDialog(null, "Venta eliminada con exito");
+                    ps.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
+                }
             }
             ps.close();
         } catch (SQLException e) {

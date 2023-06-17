@@ -180,18 +180,18 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         desktop.removeAll();
         desktop.repaint();
-//        AlumnoView1 a = new AlumnoView1();
-//        desktop.add(a);
-//        desktop.moveToFront(a);
+        VentaView v = new VentaView();
+        desktop.add(v);
+        desktop.moveToFront(v);
     }//GEN-LAST:event_jmiVentaActionPerformed
 
     private void jmiCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCompraActionPerformed
         // TODO add your handling code here:
         desktop.removeAll();
         desktop.repaint();
-//        MateriaView m = new MateriaView();
-//        desktop.add(m);
-//        desktop.moveToFront(m);
+        CompraView com = new CompraView();
+        desktop.add(com);
+        desktop.moveToFront(com);
     }//GEN-LAST:event_jmiCompraActionPerformed
 
     private void jmiClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClienteActionPerformed
@@ -216,9 +216,9 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         desktop.removeAll();
         desktop.repaint();
-//        ConsultasView c = new ConsultasView();
-//        desktop.add(c);
-//        desktop.moveToFront(c);
+        ProductoView producto = new ProductoView();
+        desktop.add(producto);
+        desktop.moveToFront(producto);
     }//GEN-LAST:event_jmiProductoActionPerformed
 
     /**
@@ -226,7 +226,7 @@ public class Menu extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktop;
+    public static javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

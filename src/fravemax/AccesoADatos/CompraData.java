@@ -16,7 +16,7 @@ public class CompraData {
     public CompraData() {
         c = Conexion.getConexion();
     }
-    
+
     private Proveedor rProveedor(int id) {
         ProveedorData pd = new ProveedorData();
         return pd.buscarProveedor(id);
@@ -101,14 +101,21 @@ public class CompraData {
     }
 
     public void eliminarCompra(int id) {
+        Compra com = buscarCompra(id);
         try {
             String sql = " UPDATE compra SET estado=0 WHERE idCompra =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
-            int fila = ps.executeUpdate();
 
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se Elimino la Compra");
+            if (id == com.getIdCompra()) {
+                int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar la Compra " + com.getIdCompra(),
+                        "BAJA DE COMPRA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (confirmar == 0) {
+                    JOptionPane.showMessageDialog(null, "Compra eliminada con exito");
+                    ps.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
+                }
             }
             ps.close();
         } catch (SQLException e) {

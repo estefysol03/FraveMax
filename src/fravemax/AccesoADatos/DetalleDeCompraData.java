@@ -37,6 +37,7 @@ public class DetalleDeCompraData {
             ps.setInt(3, detalle.getIdCompra().getIdCompra());
             ps.setInt(4, detalle.getIdProducto().getIdProducto());
             ps.setBoolean(5, detalle.isEstado());
+            updateStock(detalle.getCantidad(),detalle.getIdProducto().getIdProducto());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
@@ -111,21 +112,48 @@ public class DetalleDeCompraData {
         return detalle;
      }
      
-     public void eliminarDetalleCompra(int id){
-         try {
+     public void eliminarDetalleCompra(int id) {
+        DetalleDeCompra dc = new DetalleDeCompra();
+        dc = buscarDetalleCompra(id);
+        try {
             String sql = " UPDATE detalleCompra SET estado=0 WHERE idDetalle =? ";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
-            int fila = ps.executeUpdate();
 
-            if (fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se Elimino el detalle de Compra");
+            if (id == dc.getIdDetalle()) {
+                int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar el Detalle Compra " + dc.getIdDetalle(),
+                        "BAJA DE DETALLE COMPRA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (confirmar == 0) {
+                    JOptionPane.showMessageDialog(null, "Detalle Compra eliminado con exito");
+                    ps.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
+                }
             }
             ps.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Compra");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Detalle Compra");
 
         }
-     }
+    }
+     
+      private void updateStock(int cantidad, int idProducto) {
+        Producto pro = rProducto(idProducto);
+        int stock = pro.getStock() + cantidad;
+        String sql = "UPDATE producto SET stock=? WHERE idProducto=?";
+
+        PreparedStatement ps = null;
+        try {
+            ps = c.prepareStatement(sql);
+
+            ps.setInt(1, stock);
+            ps.setInt(2, idProducto);
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Compra" + ex.getMessage());
+        }
+    }
 
 }
