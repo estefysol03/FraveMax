@@ -3,6 +3,8 @@ package fravemax.AccesoADatos;
 import fravemax.Entidades.Compra;
 import fravemax.Entidades.Proveedor;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,6 +124,30 @@ public class CompraData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Compra");
 
         }
+    }
+
+    public List<Compra> listarCompras() {
+        List<Compra> compras = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM compra WHERE estado = 1";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Proveedor prov;
+            while (rs.next()) {
+                Compra compra = new Compra();
+                prov = rProveedor(rs.getInt("idProveedor"));
+                compra.setIdCompra(rs.getInt("idCompra"));
+                compra.setIdProveedor(prov);
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compras.add(compra);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Compra");
+        }
+        return compras;
     }
 
 }

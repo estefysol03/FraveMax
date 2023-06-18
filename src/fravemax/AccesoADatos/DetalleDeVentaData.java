@@ -4,6 +4,8 @@ import fravemax.Entidades.DetalleVenta;
 import fravemax.Entidades.Producto;
 import fravemax.Entidades.Venta;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -136,6 +138,35 @@ public class DetalleDeVentaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla detalle Detalle Venta");
 
         }
+    }
+    
+    public List<DetalleVenta> listarDetallePorVenta(int idVenta) {
+        List<DetalleVenta> dVentas = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM detalleventa WHERE idVenta=?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, idVenta);
+            ResultSet rs = ps.executeQuery();
+            Venta ven;
+            Producto pro;
+            while (rs.next()) {
+                DetalleVenta dVenta = new DetalleVenta();
+                ven = rVenta(idVenta);
+                pro = rProducto(rs.getInt("idProducto"));
+                dVenta.setIdDetalleVent(rs.getInt("idDetalleVenta"));
+                dVenta.setCantidad(rs.getInt("cantidad"));
+                dVenta.setPrecioVenta(rs.getDouble("precioVenta"));
+                dVenta.setIdVenta(ven);
+                dVenta.setIdProducto(pro);
+                dVentas.add(dVenta);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Detalle Venta");
+        }
+        return dVentas;
     }
 
     private void updateStock(int cantidad, int idProducto) {

@@ -4,6 +4,8 @@ import fravemax.Entidades.Compra;
 import fravemax.Entidades.DetalleDeCompra;
 import fravemax.Entidades.Producto;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,33 +13,34 @@ import javax.swing.JOptionPane;
  * @author Rafael
  */
 public class DetalleDeCompraData {
-     private Connection c = null;
+
+    private Connection c = null;
 
     public DetalleDeCompraData() {
         c = Conexion.getConexion();
     }
-    
+
     private Compra rCompra(int id) {
         CompraData cd = new CompraData();
         return cd.buscarCompra(id);
     }
-    
+
     private Producto rProducto(int id) {
         ProductoData pd = new ProductoData();
         return pd.buscarProducto(id);
     }
-     
-     public void guardarDetalleCompra(DetalleDeCompra detalle){
-         String sql = "INSERT INTO detallecompra (cantidad, precioCosto, idCompra, idProducto, estado) VALUES (?,?,?,?,?)";
+
+    public void guardarDetalleCompra(DetalleDeCompra detalle) {
+        String sql = "INSERT INTO detallecompra (cantidad, precioCosto, idCompra, idProducto, estado) VALUES (?,?,?,?,?)";
 
         try {
             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, detalle.getCantidad());
-               ps.setDouble(2, detalle.getPrecioCosto());
+            ps.setDouble(2, detalle.getPrecioCosto());
             ps.setInt(3, detalle.getIdCompra().getIdCompra());
             ps.setInt(4, detalle.getIdProducto().getIdProducto());
             ps.setBoolean(5, detalle.isEstado());
-            updateStock(detalle.getCantidad(),detalle.getIdProducto().getIdProducto());
+            updateStock(detalle.getCantidad(), detalle.getIdProducto().getIdProducto());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
@@ -53,15 +56,15 @@ public class DetalleDeCompraData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla detalle Compra" + ex.getMessage());
         }
-     }
-     
-     public void modificarDetalleCompra(DetalleDeCompra detalle){
-         String sql = "UPDATE detallecompra SET cantidad=?, precioCosto =?, idCompra=?, idProducto=? WHERE idDetalle=?";
+    }
+
+    public void modificarDetalleCompra(DetalleDeCompra detalle) {
+        String sql = "UPDATE detallecompra SET cantidad=?, precioCosto =?, idCompra=?, idProducto=? WHERE idDetalle=?";
 
         PreparedStatement ps = null;
         try {
             ps = c.prepareStatement(sql);
-            
+
             ps.setInt(1, detalle.getCantidad());
             ps.setDouble(2, detalle.getPrecioCosto());
             ps.setInt(3, detalle.getIdCompra().getIdCompra());
@@ -79,10 +82,10 @@ public class DetalleDeCompraData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Compra" + ex.getMessage());
         }
-     }
-     
-     public DetalleDeCompra buscarDetalleCompra(int id){
-         DetalleDeCompra detalle = new DetalleDeCompra();
+    }
+
+    public DetalleDeCompra buscarDetalleCompra(int id) {
+        DetalleDeCompra detalle = new DetalleDeCompra();
         String sql = "SELECT cantidad,precioCosto,idCompra,idProducto FROM detalleCompra WHERE idDetalle=? AND estado=1";
 
         PreparedStatement ps = null;
@@ -110,9 +113,9 @@ public class DetalleDeCompraData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla detalle compra");
         }
         return detalle;
-     }
-     
-     public void eliminarDetalleCompra(int id) {
+    }
+
+    public void eliminarDetalleCompra(int id) {
         DetalleDeCompra dc = new DetalleDeCompra();
         dc = buscarDetalleCompra(id);
         try {
@@ -136,8 +139,38 @@ public class DetalleDeCompraData {
 
         }
     }
-     
-      private void updateStock(int cantidad, int idProducto) {
+
+    public List<DetalleDeCompra> listarDetalleXProducto(int id) {
+        List<DetalleDeCompra> detalle = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM detallecompra WHERE idCompra=?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            Compra com;
+            Producto p;
+
+            while (rs.next()) {
+                DetalleDeCompra de = new DetalleDeCompra();
+                com = rCompra(rs.getInt("idCompra"));
+                p = rProducto(rs.getInt("idProducto"));
+                de.setIdDetalle(rs.getInt("idDetalle"));
+                de.setCantidad(rs.getInt("cantidad"));
+                de.setPrecioCosto(rs.getDouble("precioCosto"));
+                de.setIdCompra(com);
+                de.setIdProducto(p);
+                detalle.add(de);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Detalle Compra");
+        }
+        return detalle;
+    }
+
+    private void updateStock(int cantidad, int idProducto) {
         Producto pro = rProducto(idProducto);
         int stock = pro.getStock() + cantidad;
         String sql = "UPDATE producto SET stock=? WHERE idProducto=?";

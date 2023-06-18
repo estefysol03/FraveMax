@@ -49,7 +49,11 @@ public class Menu extends javax.swing.JFrame {
         jmConsultas = new javax.swing.JMenu();
         jmiProducto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jmiReporte = new javax.swing.JMenuItem();
+        jmiCompras = new javax.swing.JMenuItem();
+        jmiVentas = new javax.swing.JMenuItem();
+        jmiClientes = new javax.swing.JMenuItem();
+        jmiProveedores = new javax.swing.JMenuItem();
+        jmiProductos = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -67,10 +71,12 @@ public class Menu extends javax.swing.JFrame {
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+            .addGap(0, 403, Short.MAX_VALUE)
         );
 
+        salir.setForeground(new java.awt.Color(0, 0, 255));
         salir.setText("Archivo");
+        salir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenuItem1.setText("Salir del sistema");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +88,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(salir);
 
+        jmMateria.setForeground(new java.awt.Color(0, 0, 255));
         jmMateria.setText("Compras");
+        jmMateria.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmiCompra.setText("Opciones Compra");
         jmiCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +102,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmMateria);
 
+        jmAlumno.setForeground(new java.awt.Color(0, 0, 255));
         jmAlumno.setText("Ventas");
+        jmAlumno.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmiVenta.setText("Opciones Venta");
         jmiVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +116,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmAlumno);
 
+        jmInscripcion.setForeground(new java.awt.Color(0, 0, 255));
         jmInscripcion.setText("Clientes");
+        jmInscripcion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmiCliente.setText("Opciones clientes");
         jmiCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +130,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmInscripcion);
 
+        jmNotas.setForeground(new java.awt.Color(0, 0, 255));
         jmNotas.setText("Proveedor");
+        jmNotas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmiProveedor.setText("Opciones Proveedor");
         jmiProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +144,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmNotas);
 
+        jmConsultas.setForeground(new java.awt.Color(0, 0, 255));
         jmConsultas.setText("Productos");
+        jmConsultas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmiProducto.setText("Opciones Producto");
         jmiProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -142,10 +158,49 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmConsultas);
 
+        jMenu2.setForeground(new java.awt.Color(0, 0, 255));
         jMenu2.setText("Reportes");
+        jMenu2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jmiReporte.setText("Ver Reportes");
-        jMenu2.add(jmiReporte);
+        jmiCompras.setText("Compras");
+        jmiCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiComprasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiCompras);
+
+        jmiVentas.setText("Ventas");
+        jmiVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiVentasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiVentas);
+
+        jmiClientes.setText("Clientes");
+        jmiClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiClientesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiClientes);
+
+        jmiProveedores.setText("Proveedores");
+        jmiProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiProveedoresActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiProveedores);
+
+        jmiProductos.setText("Productos");
+        jmiProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiProductosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiProductos);
 
         jMenuBar1.add(jMenu2);
 
@@ -221,6 +276,51 @@ public class Menu extends javax.swing.JFrame {
         desktop.moveToFront(producto);
     }//GEN-LAST:event_jmiProductoActionPerformed
 
+    private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ReporteClienteView reporte = new ReporteClienteView();
+        desktop.add(reporte);
+        desktop.moveToFront(reporte);
+    }//GEN-LAST:event_jmiClientesActionPerformed
+
+    private void jmiProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProveedoresActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ReporteProveedorView reporte = new ReporteProveedorView();
+        desktop.add(reporte);
+        desktop.moveToFront(reporte);
+    }//GEN-LAST:event_jmiProveedoresActionPerformed
+
+    private void jmiVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVentasActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ReporteVentaView reporte = new ReporteVentaView();
+        desktop.add(reporte);
+        desktop.moveToFront(reporte);
+    }//GEN-LAST:event_jmiVentasActionPerformed
+
+    private void jmiComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiComprasActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ReporteCompraView reporte = new ReporteCompraView();
+        desktop.add(reporte);
+        desktop.moveToFront(reporte);
+    }//GEN-LAST:event_jmiComprasActionPerformed
+
+    private void jmiProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProductosActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ReporteProductoView reporte = new ReporteProductoView();
+        desktop.add(reporte);
+        desktop.moveToFront(reporte);
+    }//GEN-LAST:event_jmiProductosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,11 +337,15 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jmMateria;
     private javax.swing.JMenu jmNotas;
     private javax.swing.JMenuItem jmiCliente;
+    private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiCompra;
+    private javax.swing.JMenuItem jmiCompras;
     private javax.swing.JMenuItem jmiProducto;
+    private javax.swing.JMenuItem jmiProductos;
     private javax.swing.JMenuItem jmiProveedor;
-    private javax.swing.JMenuItem jmiReporte;
+    private javax.swing.JMenuItem jmiProveedores;
     private javax.swing.JMenuItem jmiVenta;
+    private javax.swing.JMenuItem jmiVentas;
     private javax.swing.JMenu salir;
     // End of variables declaration//GEN-END:variables
 }

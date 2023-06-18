@@ -75,24 +75,30 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jbGuardar" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="cbActivo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbDetalleVenta" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="txtCliente" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtId" alignment="0" pref="77" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jbBuscar" min="-2" pref="91" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jdcFecha" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jbGuardar" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jbActualizar" min="-2" pref="107" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jbLimpiar" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="cbActivo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txtId" min="-2" pref="77" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jbBuscar" min="-2" pref="91" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtCliente" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jbDetalleVenta" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jdcFecha" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="151" max="32767" attributes="0"/>
                       </Group>

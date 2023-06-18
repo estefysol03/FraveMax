@@ -60,9 +60,9 @@ public class Venta {
         this.estado = estado;
     }
 
-    @Override
+   @Override
     public String toString() {
-        return "Venta{" + "idVenta=" + idVenta + ", fecha=" + fecha + ", idCliente=" + idCliente.getIdCliente() + ", estado=" + estado + '}';
+        return "[Id Venta: " + idVenta + "] [Fecha: " + fecha + "] [idCliente: " + idCliente.getIdCliente() + "]";
     }
     
 }

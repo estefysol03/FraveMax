@@ -3,6 +3,8 @@ package fravemax.AccesoADatos;
 import fravemax.Entidades.Cliente;
 import fravemax.Entidades.Venta;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,5 +124,29 @@ public class VentaData {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Venta");
         }
+    }
+
+    public List<Venta> listarVentas() {
+        List<Venta> ventas = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM venta WHERE estado = 1";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Cliente cli;
+            while (rs.next()) {
+                Venta venta = new Venta();
+                cli = rCliente(rs.getInt("idCliente"));
+                venta.setIdVenta(rs.getInt("idVenta"));
+                venta.setFecha(rs.getDate("fecha").toLocalDate());
+                venta.setIdCliente(cli);
+                ventas.add(venta);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Venta");
+        }
+        return ventas;
     }
 }
