@@ -2,12 +2,10 @@ package igu;
 
 import fravemax.AccesoADatos.ProductoData;
 import fravemax.Entidades.Producto;
-import fravemax.Entidades.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,14 +14,13 @@ import javax.swing.ImageIcon;
 public class ProductoView extends javax.swing.JInternalFrame {
 
     ProductoData productoData;
-    
 
     /**
      * Creates new form NuevoProducto
      */
     public ProductoView() {
         initComponents();
-       productoData = new ProductoData();
+        productoData = new ProductoData();
     }
 
     /**
@@ -281,7 +278,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
             int stock = Integer.parseInt(txtStock.getText());
             boolean activo = cbActivo.isEnabled();
             Producto producto = new Producto(id, descripcion, precio, stock, activo);
-            productoData.modificarProducto(producto);           
+            productoData.modificarProducto(producto);
         }
 
     }//GEN-LAST:event_jbActualizarActionPerformed
@@ -292,31 +289,36 @@ public class ProductoView extends javax.swing.JInternalFrame {
         txtPActual.setText("");
         txtStock.setText("");
         cbActivo.doClick();
-        
+
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        Producto producto = productoData.buscarProducto(id);
-        if(producto.getDescripcion() != null){
-            txtId.setText(producto.getIdProducto()+"");
-            txtDescripcion.setText(producto.getDescripcion());
-            txtPActual.setText(producto.getPrecioActual()+"");
-            txtStock.setText(producto.getStock()+"");
-            cbActivo.doClick();
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            Producto producto = productoData.buscarProducto(id);
+            if (producto.getDescripcion() != null) {
+                txtId.setText(producto.getIdProducto() + "");
+                txtDescripcion.setText(producto.getDescripcion());
+                txtPActual.setText(producto.getPrecioActual() + "");
+                txtStock.setText(producto.getStock() + "");
+                cbActivo.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
         }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-            String descripcion = txtDescripcion.getText();
-            double precio = Double.parseDouble(txtPActual.getText());
-            int stock = Integer.parseInt(txtStock.getText());
-            boolean activo = cbActivo.isEnabled();
-            Producto producto = new Producto(descripcion, precio, stock, activo);
-            productoData.registrarProductos(producto);
-            txtId.setText(producto.getIdProducto() + "");
+        String descripcion = txtDescripcion.getText();
+        double precio = Double.parseDouble(txtPActual.getText());
+        int stock = Integer.parseInt(txtStock.getText());
+        boolean activo = cbActivo.isEnabled();
+        Producto producto = new Producto(descripcion, precio, stock, activo);
+        productoData.registrarProductos(producto);
+        txtId.setText(producto.getIdProducto() + "");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed

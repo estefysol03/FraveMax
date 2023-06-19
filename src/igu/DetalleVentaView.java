@@ -9,7 +9,7 @@ import fravemax.Entidades.Venta;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -329,16 +329,21 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        DetalleVenta dv = dVentaData.buscarDetalleVenta(id);
-        if (dv.getIdVenta() != null) {
-            txtId.setText(dv.getIdDetalleVent() + "");
-            txtCantidad.setText(dv.getCantidad() + "");
-            txtPrecioVenta.setText(dv.getPrecioVenta() + "");
-            txtIdVenta.setText(dv.getIdVenta().getIdVenta() + "");
-            txtIdProducto.setText(dv.getIdProducto().getIdProducto() + "");
-            cbActivo.doClick();
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            DetalleVenta dv = dVentaData.buscarDetalleVenta(id);
+            if (dv.getIdVenta() != null) {
+                txtId.setText(dv.getIdDetalleVent() + "");
+                txtCantidad.setText(dv.getCantidad() + "");
+                txtPrecioVenta.setText(dv.getPrecioVenta() + "");
+                txtIdVenta.setText(dv.getIdVenta().getIdVenta() + "");
+                txtIdProducto.setText(dv.getIdProducto().getIdProducto() + "");
+                cbActivo.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
         }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed

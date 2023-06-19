@@ -9,14 +9,14 @@ import fravemax.Entidades.Producto;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author RAFAEL
  */
 public class DetalleCompraView extends javax.swing.JInternalFrame {
-    
+
     ProductoData producto;
     CompraData compra;
     DetalleDeCompraData dCompraData;
@@ -29,7 +29,7 @@ public class DetalleCompraView extends javax.swing.JInternalFrame {
         producto = new ProductoData();
         compra = new CompraData();
         dCompraData = new DetalleDeCompraData();
-        
+
     }
 
     /**
@@ -326,16 +326,21 @@ public class DetalleCompraView extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        DetalleDeCompra dc = dCompraData.buscarDetalleCompra(id);
-        if (dc.getIdCompra() != null) {
-            txtId.setText(dc.getIdDetalle() + "");
-            txtCantidad.setText(dc.getCantidad() + "");
-            txtPrecioCosto.setText(dc.getPrecioCosto() + "");
-            txtIdCompra.setText(dc.getIdCompra().getIdCompra() + "");
-            txtIdProducto.setText(dc.getIdProducto().getIdProducto() + "");
-            cbActivo.doClick();
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            DetalleDeCompra dc = dCompraData.buscarDetalleCompra(id);
+            if (dc.getIdCompra() != null) {
+                txtId.setText(dc.getIdDetalle() + "");
+                txtCantidad.setText(dc.getCantidad() + "");
+                txtPrecioCosto.setText(dc.getPrecioCosto() + "");
+                txtIdCompra.setText(dc.getIdCompra().getIdCompra() + "");
+                txtIdProducto.setText(dc.getIdProducto().getIdProducto() + "");
+                cbActivo.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
         }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed

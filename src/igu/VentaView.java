@@ -6,11 +6,10 @@ import fravemax.Entidades.Cliente;
 import fravemax.Entidades.Venta;
 import java.awt.Graphics;
 import java.awt.Image;
-import static java.awt.SystemColor.desktop;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.ImageIcon;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +21,7 @@ public class VentaView extends javax.swing.JInternalFrame {
     ClienteData clienteData;
 
     /**
-     * Creates new form NuevoProducto
+     * Creates new form NuevoVenta
      */
     public VentaView() {
         initComponents();
@@ -297,14 +296,19 @@ public class VentaView extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        Venta venta = ventaData.buscarVenta(id);
-        if (venta.getIdCliente() != null) {
-            txtId.setText(venta.getIdVenta() + "");
-            txtCliente.setText(venta.getIdCliente().getIdCliente() + "");
-            jdcFecha.setDate(java.sql.Date.valueOf(venta.getFecha()));
-            cbActivo.doClick();
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            Venta venta = ventaData.buscarVenta(id);
+            if (venta.getIdCliente() != null) {
+                txtId.setText(venta.getIdVenta() + "");
+                txtCliente.setText(venta.getIdCliente().getIdCliente() + "");
+                jdcFecha.setDate(java.sql.Date.valueOf(venta.getFecha()));
+                cbActivo.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
         }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed

@@ -3,18 +3,13 @@ package igu;
 import fravemax.AccesoADatos.CompraData;
 import fravemax.AccesoADatos.ProveedorData;
 import fravemax.Entidades.Compra;
-import fravemax.Entidades.Producto;
 import fravemax.Entidades.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.ImageIcon;
-
-
-
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,12 +21,12 @@ public class CompraView extends javax.swing.JInternalFrame {
     ProveedorData proveedorData;
 
     /**
-     * Creates new form NuevoProducto
+     * Creates new form NuevoCompra
      */
     public CompraView() {
         initComponents();
-       compraData = new CompraData();
-       proveedorData = new ProveedorData();
+        compraData = new CompraData();
+        proveedorData = new ProveedorData();
     }
 
     /**
@@ -283,7 +278,7 @@ public class CompraView extends javax.swing.JInternalFrame {
             LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             boolean activo = cbActivo.isEnabled();
             Compra compra = new Compra(id, idProveedor, fecha, activo);
-            compraData.modificarCompra(compra);           
+            compraData.modificarCompra(compra);
         }
 
     }//GEN-LAST:event_jbActualizarActionPerformed
@@ -293,29 +288,34 @@ public class CompraView extends javax.swing.JInternalFrame {
         txtProveedor.setText("");
         jdcFecha.setCalendar(null);
         cbActivo.doClick();
-        
+
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        Compra compra = compraData.buscarCompra(id);
-        if(compra.getIdProveedor() != null){
-            txtId.setText(compra.getIdCompra()+"" );
-            txtProveedor.setText(compra.getIdProveedor().getIdProveedor() + "");
-            jdcFecha.setDate(java.sql.Date.valueOf(compra.getFecha()));
-            cbActivo.doClick();
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            Compra compra = compraData.buscarCompra(id);
+            if (compra.getIdProveedor() != null) {
+                txtId.setText(compra.getIdCompra() + "");
+                txtProveedor.setText(compra.getIdProveedor().getIdProveedor() + "");
+                jdcFecha.setDate(java.sql.Date.valueOf(compra.getFecha()));
+                cbActivo.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
         }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-            Proveedor idProveedor = proveedorData.buscarProveedor(Integer.parseInt(txtProveedor.getText()));
-            LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            boolean activo = cbActivo.isEnabled();
-            Compra compra = new Compra(idProveedor, fecha, activo);
-            compraData.guardarCompra(compra);
-            txtId.setText(compra.getIdCompra() + "");
+        Proveedor idProveedor = proveedorData.buscarProveedor(Integer.parseInt(txtProveedor.getText()));
+        LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        boolean activo = cbActivo.isEnabled();
+        Compra compra = new Compra(idProveedor, fecha, activo);
+        compraData.guardarCompra(compra);
+        txtId.setText(compra.getIdCompra() + "");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed

@@ -5,9 +5,7 @@ import fravemax.Entidades.Cliente;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,14 +14,13 @@ import javax.swing.ImageIcon;
 public class ClienteView extends javax.swing.JInternalFrame {
 
     ClienteData clienteData;
-    
 
     /**
      * Creates new form NuevoCliente
      */
     public ClienteView() {
         initComponents();
-       clienteData = new ClienteData();
+        clienteData = new ClienteData();
     }
 
     /**
@@ -315,33 +312,38 @@ public class ClienteView extends javax.swing.JInternalFrame {
         txtDomicilio.setText("");
         txtTelefono.setText("");
         cbActivo.doClick();
-        
+
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        Cliente cliente = clienteData.buscarCliente(id);
-        if(cliente.getNombre() != null){
-            txtId.setText(cliente.getIdCliente()+"");
-            txtApellido.setText(cliente.getApellido());
-            txtNombre.setText(cliente.getNombre());
-            txtDomicilio.setText(cliente.getDomicilio());
-            txtTelefono.setText(cliente.getTelefono());
-            cbActivo.doClick();
-       }
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            Cliente cliente = clienteData.buscarCliente(id);
+            if (cliente.getNombre() != null) {
+                txtId.setText(cliente.getIdCliente() + "");
+                txtApellido.setText(cliente.getApellido());
+                txtNombre.setText(cliente.getNombre());
+                txtDomicilio.setText(cliente.getDomicilio());
+                txtTelefono.setText(cliente.getTelefono());
+                cbActivo.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
+        }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-            String apellido = txtApellido.getText();
-            String nombre = txtNombre.getText();
-            String domicilio = txtDomicilio.getText();
-            String telefono = txtTelefono.getText();
-            boolean activo = cbActivo.isEnabled();
-            Cliente cliente = new Cliente(apellido, nombre, domicilio, telefono, activo);
-            clienteData.guardarCliente(cliente);
-            txtId.setText(cliente.getIdCliente() + "");
+        String apellido = txtApellido.getText();
+        String nombre = txtNombre.getText();
+        String domicilio = txtDomicilio.getText();
+        String telefono = txtTelefono.getText();
+        boolean activo = cbActivo.isEnabled();
+        Cliente cliente = new Cliente(apellido, nombre, domicilio, telefono, activo);
+        clienteData.guardarCliente(cliente);
+        txtId.setText(cliente.getIdCliente() + "");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed

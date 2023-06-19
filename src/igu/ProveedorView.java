@@ -5,9 +5,7 @@ import fravemax.Entidades.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,14 +14,13 @@ import javax.swing.ImageIcon;
 public class ProveedorView extends javax.swing.JInternalFrame {
 
     ProveedorData proveedorData;
-    
 
     /**
-     * Creates new form NuevoCliente
+     * Creates new form NuevoProveedor
      */
     public ProveedorView() {
         initComponents();
-       proveedorData = new ProveedorData();
+        proveedorData = new ProveedorData();
     }
 
     /**
@@ -281,7 +278,7 @@ public class ProveedorView extends javax.swing.JInternalFrame {
             String telefono = txtTelefono.getText();
             boolean activo = cbActivo.isEnabled();
             Proveedor proveedor = new Proveedor(id, razonSocial, domicilio, telefono, activo);
-            proveedorData.modificarProveedor(proveedor);           
+            proveedorData.modificarProveedor(proveedor);
         }
 
     }//GEN-LAST:event_jbActualizarActionPerformed
@@ -292,31 +289,36 @@ public class ProveedorView extends javax.swing.JInternalFrame {
         txtDomicilio.setText("");
         txtTelefono.setText("");
         cbActivo.doClick();
-        
+
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        Proveedor proveedor = proveedorData.buscarProveedor(id);
-        if(proveedor.getRazonSocial() != null){
-            txtId.setText(proveedor.getIdProveedor()+"");
-            txtRazonSocial.setText(proveedor.getRazonSocial());
-            txtDomicilio.setText(proveedor.getDomicilio());
-            txtTelefono.setText(proveedor.getTelefono());
-            cbActivo.doClick();
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            Proveedor proveedor = proveedorData.buscarProveedor(id);
+            if (proveedor.getRazonSocial() != null) {
+                txtId.setText(proveedor.getIdProveedor() + "");
+                txtRazonSocial.setText(proveedor.getRazonSocial());
+                txtDomicilio.setText(proveedor.getDomicilio());
+                txtTelefono.setText(proveedor.getTelefono());
+                cbActivo.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
         }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-            String razonSocial = txtRazonSocial.getText();
-            String domicilio = txtDomicilio.getText();
-            String telefono = txtTelefono.getText();
-            boolean activo = cbActivo.isEnabled();
-            Proveedor proveedor = new Proveedor(razonSocial, domicilio, telefono, activo);
-            proveedorData.guardarProveedor(proveedor);
-            txtId.setText(proveedor.getIdProveedor() + "");
+        String razonSocial = txtRazonSocial.getText();
+        String domicilio = txtDomicilio.getText();
+        String telefono = txtTelefono.getText();
+        boolean activo = cbActivo.isEnabled();
+        Proveedor proveedor = new Proveedor(razonSocial, domicilio, telefono, activo);
+        proveedorData.guardarProveedor(proveedor);
+        txtId.setText(proveedor.getIdProveedor() + "");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
