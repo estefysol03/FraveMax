@@ -1,6 +1,7 @@
 package fravemax.AccesoADatos;
 
 import fravemax.Entidades.Cliente;
+import fravemax.Entidades.DetalleVenta;
 import fravemax.Entidades.Venta;
 import java.sql.*;
 import java.util.ArrayList;
@@ -115,6 +116,7 @@ public class VentaData {
                         "BAJA DE VENTA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (confirmar == 0) {
                     JOptionPane.showMessageDialog(null, "Venta eliminada con exito");
+                    updateDetalleVentaXVenta(id);
                     ps.executeUpdate();
                 } else {
                     JOptionPane.showMessageDialog(null, "Operacion cancelada");
@@ -148,5 +150,31 @@ public class VentaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Venta");
         }
         return ventas;
+    }
+    
+    public void updateDetalleVentaXVenta(int id) {
+        DetalleVenta v = new DetalleVenta();
+        DetalleDeVentaData d = new DetalleDeVentaData();
+        v = d.buscarDetalleVenta(id);
+        try {
+            String sql = " UPDATE detalleVenta SET estado=0 WHERE idVenta =? ";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+
+//            if (id == v.getIdDetalleVent()) {
+//                int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar el Detalle Venta " + v.getIdDetalleVent(),
+//                        "BAJA DE DETALLE VENTA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+//                if (confirmar == 0) {
+//                    JOptionPane.showMessageDialog(null, "Detalle Venta eliminada con exito");
+            ps.executeUpdate();
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
+//                }
+//            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla detalle Detalle Venta");
+
+        }
     }
 }

@@ -1,6 +1,7 @@
 package fravemax.AccesoADatos;
 
 import fravemax.Entidades.Compra;
+import fravemax.Entidades.DetalleDeCompra;
 import fravemax.Entidades.Proveedor;
 import java.sql.*;
 import java.util.ArrayList;
@@ -114,6 +115,7 @@ public class CompraData {
                         "BAJA DE COMPRA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (confirmar == 0) {
                     JOptionPane.showMessageDialog(null, "Compra eliminada con exito");
+                    updateDetalleXCompra(id);
                     ps.executeUpdate();
                 } else {
                     JOptionPane.showMessageDialog(null, "Operacion cancelada");
@@ -148,6 +150,32 @@ public class CompraData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Compra");
         }
         return compras;
+    }
+    
+    public void updateDetalleXCompra(int id) {
+        DetalleDeCompra dc = new DetalleDeCompra();
+        DetalleDeCompraData dcd = new DetalleDeCompraData();
+        dc = dcd.buscarDetalleCompra(id);
+        try {
+            String sql = " UPDATE detalleCompra SET estado=0 WHERE idCompra =? ";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+
+//            if (id == dc.getIdDetalle()) {
+//                int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar el Detalle Compra " + dc.getIdDetalle(),
+//                        "BAJA DE DETALLE COMPRA", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+//                if (confirmar == 0) {
+//                    JOptionPane.showMessageDialog(null, "Detalle Compra eliminado con exito");
+                    ps.executeUpdate();
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Operacion cancelada");
+//                }
+//            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Detalle Compra");
+
+        }
     }
 
 }
