@@ -457,6 +457,7 @@ public class CompraView extends javax.swing.JInternalFrame {
             cbProveedor.removeAllItems();
             armarListaProveedor();
         }
+        txtProveedor.setText("");
     }//GEN-LAST:event_jbFiltrarActionPerformed
 
 

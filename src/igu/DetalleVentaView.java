@@ -14,13 +14,12 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author RAFAEL
  */
 public class DetalleVentaView extends javax.swing.JInternalFrame {
-
+    
     ProductoData producto;
     VentaData venta;
     DetalleDeVentaData dVentaData;
@@ -39,7 +38,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         ventas = (ArrayList) venta.listarVentas();
         jbSeleccionar.setVisible(false);
         cbVentas.setVisible(false);
-
+        
     }
 
     /**
@@ -80,7 +79,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         cbVentas = new javax.swing.JComboBox<>();
         jbSeleccionar = new javax.swing.JButton();
         txtProducto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbBuscarP = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -119,7 +119,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 204));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("ID VENTA");
+        jLabel5.setText("ID VENTA:");
 
         txtId.setBackground(new java.awt.Color(255, 255, 255));
         txtId.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -232,6 +232,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         txtIdVenta.setBackground(new java.awt.Color(255, 255, 255));
         txtIdVenta.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtIdVenta.setForeground(new java.awt.Color(0, 0, 204));
+        txtIdVenta.setToolTipText("Click para buscar Id venta");
         txtIdVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtIdVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -260,15 +261,25 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
 
         txtProducto.setForeground(new java.awt.Color(0, 0, 204));
         txtProducto.setToolTipText("Ingresar al menos 3 caracteres para buscar");
-
-        jButton1.setForeground(new java.awt.Color(0, 0, 204));
-        jButton1.setText("Buscar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtProductoActionPerformed(evt);
             }
         });
+
+        jbBuscarP.setForeground(new java.awt.Color(0, 0, 204));
+        jbBuscarP.setText("BUSCAR");
+        jbBuscarP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbBuscarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarPActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("DESCRIPCION PRODUCTO");
+        jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -315,10 +326,13 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jbSeleccionar)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1)))))
-                        .addGap(30, 30, 30))
+                                        .addComponent(jbBuscarP)))))
+                        .addGap(24, 24, 24))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -338,12 +352,14 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSeleccionar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jbBuscarP))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,7 +379,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
                     .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -385,7 +401,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         if (validarActualizar() == true) {
             JOptionPane.showMessageDialog(this, "No se puede actualizar Detalle de Venta");
         } else {
-
+            
             int id = Integer.parseInt(txtId.getText());
             int cantidad = Integer.parseInt(txtCantidad.getText());
             double pVenta = Double.parseDouble(txtPrecioVenta.getText());
@@ -489,7 +505,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             double precio = pro.getPrecioActual();
             txtPrecioVenta.setText(precio + "");
         } catch (Exception ex) {
-
+            
         }
     }//GEN-LAST:event_cbProductosActionPerformed
 
@@ -527,7 +543,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCantidadKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPActionPerformed
         // TODO add your handling code here:
         if (armarLista().isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay coincidencias, reintente");
@@ -535,15 +551,19 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
             cbProductos.removeAllItems();
             armarLista();
         }
+        txtProducto.setText("");
+    }//GEN-LAST:event_jbBuscarPActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbActivo;
     private javax.swing.JComboBox<Producto> cbProductos;
     private javax.swing.JComboBox<Venta> cbVentas;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -556,6 +576,7 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbBorrar;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbBuscarP;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbSeleccionar;
@@ -574,16 +595,16 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         }
         return productos;
     }
-
+    
     private void armarListaVenta() {
         for (Venta aux : ventas) {
             cbVentas.addItem(aux);
         }
     }
-
+    
     private boolean validarGuardar() {
         boolean vacio = false;
-
+        
         if (txtIdVenta.getText().isEmpty()) {
             vacio = true;
             txtIdVenta.setBackground(Color.YELLOW);
@@ -617,13 +638,13 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         } else {
             cbActivo.setBackground(Color.WHITE);
         }
-
+        
         return vacio;
     }
-
+    
     private boolean validarActualizar() {
         boolean vacio = false;
-
+        
         if (txtId.getText().isEmpty()) {
             txtId.setBackground(Color.YELLOW);
             JOptionPane.showMessageDialog(this, "El campo Id no es valido");
@@ -663,8 +684,8 @@ public class DetalleVentaView extends javax.swing.JInternalFrame {
         } else {
             cbActivo.setBackground(Color.WHITE);
         }
-
+        
         return vacio;
     }
-
+    
 }

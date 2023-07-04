@@ -95,7 +95,7 @@ public class Menu extends javax.swing.JFrame {
         jmMateria.setText("Compras");
         jmMateria.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jmiCompra.setText("Opciones Compra");
+        jmiCompra.setText("Compra de Productos");
         jmiCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiCompraActionPerformed(evt);
@@ -117,7 +117,7 @@ public class Menu extends javax.swing.JFrame {
         jmAlumno.setText("Ventas");
         jmAlumno.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jmiVenta.setText("Opciones Venta");
+        jmiVenta.setText("Venta de Productos");
         jmiVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiVentaActionPerformed(evt);

@@ -455,7 +455,7 @@ public class VentaView extends javax.swing.JInternalFrame {
             cbClientes.removeAllItems();
             armarLista();
         }
-
+       txtCliente.setText("");
     }//GEN-LAST:event_jbFiltrarActionPerformed
 
     private void txtClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyTyped

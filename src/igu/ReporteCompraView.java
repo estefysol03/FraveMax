@@ -82,9 +82,7 @@ public class ReporteCompraView extends javax.swing.JInternalFrame {
         jtCompras.setForeground(new java.awt.Color(0, 0, 255));
         jtCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Id Detalle", "Cantidad", "Precio", "Producto"

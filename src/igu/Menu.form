@@ -47,7 +47,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiCompra">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Opciones Compra"/>
+                <Property name="text" type="java.lang.String" value="Compra de Productos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiCompraActionPerformed"/>
@@ -76,7 +76,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiVenta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Opciones Venta"/>
+                <Property name="text" type="java.lang.String" value="Venta de Productos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiVentaActionPerformed"/>
