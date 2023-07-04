@@ -2,10 +2,13 @@ package igu;
 
 import fravemax.AccesoADatos.ProductoData;
 import fravemax.Entidades.Producto;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -14,6 +17,7 @@ import javax.swing.JOptionPane;
 public class ProductoView extends javax.swing.JInternalFrame {
 
     ProductoData productoData;
+    ArrayList<Producto> productos;
 
     /**
      * Creates new form NuevoProducto
@@ -21,6 +25,9 @@ public class ProductoView extends javax.swing.JInternalFrame {
     public ProductoView() {
         initComponents();
         productoData = new ProductoData();
+        jbSeleccionar.setVisible(false);
+        cbProductos.setVisible(false);
+
     }
 
     /**
@@ -56,6 +63,8 @@ public class ProductoView extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        cbProductos = new javax.swing.JComboBox<>();
+        jbSeleccionar = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -95,22 +104,38 @@ public class ProductoView extends javax.swing.JInternalFrame {
         txtId.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(0, 0, 204));
         txtId.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
 
         txtPActual.setBackground(new java.awt.Color(255, 255, 255));
         txtPActual.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtPActual.setForeground(new java.awt.Color(0, 0, 204));
         txtPActual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtPActual.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPActualKeyTyped(evt);
+            }
+        });
 
         txtStock.setBackground(new java.awt.Color(255, 255, 255));
         txtStock.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtStock.setForeground(new java.awt.Color(0, 0, 204));
         txtStock.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockKeyTyped(evt);
+            }
+        });
 
         jbLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         jbLimpiar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jbLimpiar.setForeground(new java.awt.Color(0, 0, 204));
         jbLimpiar.setText("Limpiar");
         jbLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarActionPerformed(evt);
@@ -122,6 +147,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
         jbActualizar.setForeground(new java.awt.Color(0, 0, 204));
         jbActualizar.setText("Actualizar");
         jbActualizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbActualizarActionPerformed(evt);
@@ -133,6 +159,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
         jbGuardar.setForeground(new java.awt.Color(0, 0, 204));
         jbGuardar.setText("Guardar");
         jbGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
@@ -144,6 +171,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
         jbBuscar.setForeground(new java.awt.Color(0, 0, 204));
         jbBuscar.setText("Buscar");
         jbBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -162,6 +190,7 @@ public class ProductoView extends javax.swing.JInternalFrame {
         jbBorrar.setForeground(new java.awt.Color(0, 0, 204));
         jbBorrar.setText("Borrar");
         jbBorrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
@@ -176,12 +205,24 @@ public class ProductoView extends javax.swing.JInternalFrame {
         txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 204));
+        txtDescripcion.setToolTipText("Ingresar al menos 3 caracteres para buscar");
         txtDescripcion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 204));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("DESCRIPCION:");
+
+        cbProductos.setForeground(new java.awt.Color(0, 0, 204));
+
+        jbSeleccionar.setForeground(new java.awt.Color(0, 0, 204));
+        jbSeleccionar.setText("SELECCIONAR");
+        jbSeleccionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSeleccionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,25 +239,30 @@ public class ProductoView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cbActivo)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtPActual, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-                                .addComponent(txtDescripcion)
-                                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPActual, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbActivo)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(145, 145, 145)
+                                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -225,16 +271,18 @@ public class ProductoView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jbBuscar)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSeleccionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(14, 14, 14)
+                    .addComponent(jLabel8)
+                    .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,11 +296,11 @@ public class ProductoView extends javax.swing.JInternalFrame {
                     .addComponent(cbActivo))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                    .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,30 +319,57 @@ public class ProductoView extends javax.swing.JInternalFrame {
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
         // TODO add your handling code here:
-        if (txtId.getText() != null) {
-            int id = Integer.parseInt(txtId.getText());
-            String descripcion = txtDescripcion.getText();
-            double precio = Double.parseDouble(txtPActual.getText());
-            int stock = Integer.parseInt(txtStock.getText());
-            boolean activo = cbActivo.isEnabled();
-            Producto producto = new Producto(id, descripcion, precio, stock, activo);
-            productoData.modificarProducto(producto);
+        if (vCamposActualizar() == true) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos, primero realice busqueda del "
+                    + "producto para actualizar");
+        } else {
+            if (txtId.getText() != null) {
+                int id = Integer.parseInt(txtId.getText());
+                String descripcion = txtDescripcion.getText();
+                double precio = Double.parseDouble(txtPActual.getText());
+                int stock = Integer.parseInt(txtStock.getText());
+                boolean activo = cbActivo.isEnabled();
+                Producto producto = new Producto(id, descripcion, precio, stock, activo);
+                productoData.modificarProducto(producto);
+            }
         }
-
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         txtId.setText("");
+        txtId.setBackground(Color.WHITE);
         txtDescripcion.setText("");
+        txtDescripcion.setBackground(Color.WHITE);
         txtPActual.setText("");
+        txtPActual.setBackground(Color.WHITE);
         txtStock.setText("");
-        cbActivo.doClick();
-
+        txtStock.setBackground(Color.WHITE);
+        cbActivo.setSelected(false);
+        cbActivo.setBackground(Color.WHITE);
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        try {
+        txtId.setBackground(Color.WHITE);
+        txtDescripcion.setBackground(Color.WHITE);
+
+        if (txtId.getText().isEmpty() && txtDescripcion.getText().isEmpty()) {
+            txtId.setBackground(Color.ORANGE);
+            txtDescripcion.setBackground(Color.ORANGE);
+            JOptionPane.showMessageDialog(this, "Debe completar el campo Id o el campo descripcion, segun su "
+                    + "preferencia de busqueda");
+
+        } else if (txtId.getText().isEmpty()) {
+            armarLista();
+            if (productos.isEmpty()) {
+                txtDescripcion.setBackground(Color.ORANGE);
+                JOptionPane.showMessageDialog(this, "No se encontraron coincidencias, por favor reintente");
+            } else {
+                jbSeleccionar.setVisible(true);
+                cbProductos.setVisible(true);
+            }
+
+        }else{
             int id = Integer.parseInt(txtId.getText());
             Producto producto = productoData.buscarProducto(id);
             if (producto.getDescripcion() != null) {
@@ -302,34 +377,93 @@ public class ProductoView extends javax.swing.JInternalFrame {
                 txtDescripcion.setText(producto.getDescripcion());
                 txtPActual.setText(producto.getPrecioActual() + "");
                 txtStock.setText(producto.getStock() + "");
-                cbActivo.doClick();
+                cbActivo.setSelected(true);
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
-        }
-
+        } 
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-        String descripcion = txtDescripcion.getText();
-        double precio = Double.parseDouble(txtPActual.getText());
-        int stock = Integer.parseInt(txtStock.getText());
-        boolean activo = cbActivo.isEnabled();
-        Producto producto = new Producto(descripcion, precio, stock, activo);
-        productoData.registrarProductos(producto);
-        txtId.setText(producto.getIdProducto() + "");
+        if (vCamposGuardar() == true) {
+            JOptionPane.showMessageDialog(this, "Producto no se pudo agregar");
+        } else {
+            String descripcion = txtDescripcion.getText();
+            double precio = Double.parseDouble(txtPActual.getText());
+            int stock = Integer.parseInt(txtStock.getText());
+            boolean activo = cbActivo.isEnabled();
+            Producto producto = new Producto(descripcion, precio, stock, activo);
+            productoData.registrarProductos(producto);
+            txtId.setText(producto.getIdProducto() + "");
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        productoData.eliminarProducto(id);
+        if (vCamposActualizar() == true) {
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos, primero realice busqueda del "
+                    + "producto para borrarlo");
+        } else {
+            int id = Integer.parseInt(txtId.getText());
+            productoData.eliminarProducto(id);
+        }
     }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean num = key >= 48 && key <= 57;
+        boolean retroceso = key == 8;
+        if (!(num || retroceso)) {
+            JOptionPane.showMessageDialog(this, "Este campo es solo numerico y no admite espacios");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtPActualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPActualKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean p = key == 46;
+        boolean num = key >= 48 && key <= 57;
+        boolean retroceso = key == 8;
+        if (!(num || retroceso || p)) {
+            JOptionPane.showMessageDialog(this, "Este campo solo admite numeros y punto");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPActualKeyTyped
+
+    private void txtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean num = key >= 48 && key <= 57;
+        boolean retroceso = key == 8;
+        if (!(num || retroceso)) {
+            JOptionPane.showMessageDialog(this, "Este campo es solo numerico y no admite espacios");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStockKeyTyped
+
+    private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
+        // TODO add your handling code here:
+            Producto seleccionado = (Producto) cbProductos.getSelectedItem();
+            int id = seleccionado.getIdProducto();
+            Producto producto = productoData.buscarProducto(id);
+            if (producto.getDescripcion() != null) {
+                txtId.setText(producto.getIdProducto() + "");
+                txtDescripcion.setText(producto.getDescripcion());
+                txtPActual.setText(producto.getPrecioActual() + "");
+                txtStock.setText(producto.getStock() + "");
+                cbActivo.setSelected(true);
+                jbSeleccionar.setVisible(false);
+                cbProductos.setVisible(false);
+                cbProductos.removeAllItems();
+            }
+        
+    }//GEN-LAST:event_jbSeleccionarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbActivo;
+    private javax.swing.JComboBox<Producto> cbProductos;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -343,9 +477,97 @@ public class ProductoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
+    private javax.swing.JButton jbSeleccionar;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtPActual;
     private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
+
+    private void armarLista() {
+        String seleccionado = txtDescripcion.getText();
+        productos = (ArrayList) productoData.listarProductoXNombre(seleccionado);
+        for (Producto aux : productos) {
+            cbProductos.addItem(aux);
+        }
+    }
+
+    private boolean vCamposGuardar() {
+        boolean vacio = false;
+
+        if (txtDescripcion.getText().isEmpty()) {
+            vacio = true;
+            txtDescripcion.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Descripcion no puede estar vacio");
+        } else {
+            txtDescripcion.setBackground(Color.WHITE);
+        }
+        if (txtPActual.getText().isEmpty()) {
+            vacio = true;
+            txtPActual.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Precio no puede estar vacio");
+        } else {
+            txtPActual.setBackground(Color.WHITE);
+        }
+        if (txtStock.getText().isEmpty()) {
+            vacio = true;
+            txtStock.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Stock no puede estar vacio");
+        } else {
+            txtStock.setBackground(Color.WHITE);
+        }
+        if (!cbActivo.isSelected()) {
+            vacio = true;
+            cbActivo.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El Producto debe estar activo");
+        } else {
+            cbActivo.setBackground(Color.WHITE);
+        }
+
+        return vacio;
+    }
+
+    private boolean vCamposActualizar() {
+        boolean vacio = false;
+
+        if (txtId.getText().isEmpty()) {
+            vacio = true;
+            txtId.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Id no puede estar vacio");
+        } else {
+            txtId.setBackground(Color.WHITE);
+        }
+        if (txtDescripcion.getText().isEmpty()) {
+            vacio = true;
+            txtDescripcion.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Descripcion no puede estar vacio");
+            txtDescripcion.setText("Ingresar descripcion o buscar por Id");
+        } else {
+            txtDescripcion.setBackground(Color.WHITE);
+        }
+        if (txtPActual.getText().isEmpty()) {
+            vacio = true;
+            txtPActual.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Precio no puede estar vacio");
+        } else {
+            txtPActual.setBackground(Color.WHITE);
+        }
+        if (txtStock.getText().isEmpty()) {
+            vacio = true;
+            txtStock.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Stock no puede estar vacio");
+        } else {
+            txtStock.setBackground(Color.WHITE);
+        }
+        if (!cbActivo.isSelected()) {
+            vacio = true;
+            cbActivo.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El Producto debe estar activo");
+        } else {
+            cbActivo.setBackground(Color.WHITE);
+        }
+
+        return vacio;
+    }
+
 }

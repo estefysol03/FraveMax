@@ -31,57 +31,71 @@ public class DetalleDeVentaData {
     }
 
     public void guardarDetalleVenta(DetalleVenta detalle) {
-        String sql = "INSERT INTO detalleVenta (cantidad, precioVenta, idVenta, idProducto, estado) VALUES (?,?,?,?,?)";
+        int stock = detalle.getCantidad();
+        int idProducto = detalle.getIdProducto().getIdProducto();
+        if (updateStock(stock, idProducto) >= 0) {
+            String sql = "INSERT INTO detalleVenta (cantidad, precioVenta, idVenta, idProducto, estado) VALUES (?,?,?,?,?)";
 
-        try {
-            PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, detalle.getCantidad());
-            ps.setDouble(2, detalle.getPrecioVenta());
-            ps.setInt(3, detalle.getIdVenta().getIdVenta());
-            ps.setInt(4, detalle.getIdProducto().getIdProducto());
-            ps.setBoolean(5, detalle.isEstado());
-            updateStock(detalle.getCantidad(), detalle.getIdProducto().getIdProducto());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
+            try {
+                PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, detalle.getCantidad());
+                ps.setDouble(2, detalle.getPrecioVenta());
+                ps.setInt(3, detalle.getIdVenta().getIdVenta());
+                ps.setInt(4, detalle.getIdProducto().getIdProducto());
+                ps.setBoolean(5, detalle.isEstado());
 
-            if (rs.next()) {
-                detalle.setIdDetalleVent(rs.getInt("idDetalleVenta"));
-                JOptionPane.showMessageDialog(null, "Detalle de Venta agregado");
-            } else {
+               // updateStock(detalle.getCantidad(), detalle.getIdProducto().getIdProducto());
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
 
-                JOptionPane.showMessageDialog(null, "No se añadio el detalle de Venta");
+                if (rs.next()) {
+                    detalle.setIdDetalleVent(rs.getInt("idDetalleVenta"));
+                    JOptionPane.showMessageDialog(null, "Detalle de Venta agregado");
+                } else {
 
+                    JOptionPane.showMessageDialog(null, "No se añadio el detalle de Venta");
+
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla detalle Compra" + ex.getMessage());
             }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla detalle Compra" + ex.getMessage());
         }
+
     }
 
     public void modificarDetalleVenta(DetalleVenta detalle) {
-        String sql = "UPDATE detalleVenta SET cantidad=?, precioVenta =?, idVenta=?, idProducto=? WHERE idDetalleVenta=?";
+        //Chequear que esta descontando mal el stock del producto, ver metodo updateStckActuañizar...
+       
+        int cantidad = detalle.getCantidad();
+        int idProducto = detalle.getIdProducto().getIdProducto();
+        int id = detalle.getIdDetalleVent();
+        if (updateStockActualizar(cantidad, idProducto, id) >= 0) {
+            String sql = "UPDATE detalleVenta SET cantidad=?, precioVenta =?, idVenta=?, idProducto=? WHERE idDetalleVenta=?";
 
-        PreparedStatement ps = null;
-        try {
-            ps = c.prepareStatement(sql);
+            PreparedStatement ps = null;
+            try {
+                ps = c.prepareStatement(sql);
 
-            ps.setInt(1, detalle.getCantidad());
-            ps.setDouble(2, detalle.getPrecioVenta());
-            ps.setInt(3, detalle.getIdVenta().getIdVenta());
-            ps.setInt(4, detalle.getIdProducto().getIdProducto());
-            ps.setInt(5, detalle.getIdDetalleVent());
+                ps.setInt(1, detalle.getCantidad());
+                ps.setDouble(2, detalle.getPrecioVenta());
+                ps.setInt(3, detalle.getIdVenta().getIdVenta());
+                ps.setInt(4, detalle.getIdProducto().getIdProducto());
+                ps.setInt(5, detalle.getIdDetalleVent());
+         //       updateStockActualizar(cantidad, idProducto, id);
+                int exito = ps.executeUpdate();
 
-            int exito = ps.executeUpdate();
+                if (exito == 1) {
+                    JOptionPane.showMessageDialog(null, "Modificacion Exitosa");
+                } else {
+                    JOptionPane.showMessageDialog(null, "El detalle de Venta ingresado no existe");
+                }
 
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Modificacion Exitosa");
-            } else {
-                JOptionPane.showMessageDialog(null, "El detalle de Venta ingresado no existe");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Venta" + ex.getMessage());
             }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Venta" + ex.getMessage());
         }
+
     }
 
     public DetalleVenta buscarDetalleVenta(int id) {
@@ -139,7 +153,7 @@ public class DetalleDeVentaData {
 
         }
     }
-    
+
     public List<DetalleVenta> listarDetallePorVenta(int idVenta) {
         List<DetalleVenta> dVentas = new ArrayList<>();
 
@@ -169,23 +183,55 @@ public class DetalleDeVentaData {
         return dVentas;
     }
 
-    private void updateStock(int cantidad, int idProducto) {
+    private int updateStock(int cantidad, int idProducto) {
         Producto pro = rProducto(idProducto);
         int stock = pro.getStock() - cantidad;
-        String sql = "UPDATE producto SET stock=? WHERE idProducto=?";
+        if (stock < 0) {
+            JOptionPane.showMessageDialog(null, "Stock insuficiente, solo puede vender " + pro.getStock() + " " + pro.getDescripcion());
+        } else {
+            String sql = "UPDATE producto SET stock=? WHERE idProducto=?";
+            PreparedStatement ps = null;
+            try {
+                ps = c.prepareStatement(sql);
 
-        PreparedStatement ps = null;
-        try {
-            ps = c.prepareStatement(sql);
+                ps.setInt(1, stock);
+                ps.setInt(2, idProducto);
 
-            ps.setInt(1, stock);
-            ps.setInt(2, idProducto);
+                ps.executeUpdate();
 
-            ps.executeUpdate();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Compra" + ex.getMessage());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Compra" + ex.getMessage());
+            }
         }
+        return stock;
+    }
+
+    public int updateStockActualizar(int cantidad, int idProducto, int id) {
+        //hacer metodo boolean para poder usarlo en modificar
+        Producto pro = rProducto(idProducto);
+        DetalleVenta dv = buscarDetalleVenta(id);
+        int stockActual = dv.getCantidad();
+        int stockNew = (cantidad - stockActual);
+        int stock = (pro.getStock() - stockNew);
+        if (stock < 0) {
+            JOptionPane.showMessageDialog(null, "Stock insuficiente, solo puede vender " + pro.getStock() + " " + pro.getDescripcion());
+        } else {
+            String sql = "UPDATE producto SET stock=? WHERE idProducto=?";
+
+            PreparedStatement ps = null;
+            try {
+                ps = c.prepareStatement(sql);
+
+                ps.setInt(1, stock);
+                ps.setInt(2, idProducto);
+
+                ps.executeUpdate();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Venta" + ex.getMessage());
+            }
+        }
+        return stock;
     }
 
 }

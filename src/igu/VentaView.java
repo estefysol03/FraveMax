@@ -4,12 +4,17 @@ import fravemax.AccesoADatos.ClienteData;
 import fravemax.AccesoADatos.VentaData;
 import fravemax.Entidades.Cliente;
 import fravemax.Entidades.Venta;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -19,14 +24,24 @@ public class VentaView extends javax.swing.JInternalFrame {
 
     VentaData ventaData;
     ClienteData clienteData;
+    ArrayList<Cliente> clientes;
+    ArrayList<Venta> ventas;
 
     /**
-     * Creates new form NuevoVenta
+     * Creates new form NuevoProducto
      */
     public VentaView() {
         initComponents();
         ventaData = new VentaData();
         clienteData = new ClienteData();
+        clientes = (ArrayList) clienteData.listarClientes();
+        ventas = (ArrayList) ventaData.listarVentas();
+        jdcFecha.setMaxSelectableDate(new Date());
+        jdcFecha.setMinSelectableDate(new Date());
+        jbSeleccionar.setVisible(false);
+        cbVentas.setVisible(false);
+        //armarLista();
+
     }
 
     /**
@@ -57,10 +72,14 @@ public class VentaView extends javax.swing.JInternalFrame {
         cbActivo = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         jbBorrar = new javax.swing.JButton();
-        txtCliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jbDetalleVenta = new javax.swing.JButton();
         jdcFecha = new com.toedter.calendar.JDateChooser();
+        jbSeleccionar = new javax.swing.JButton();
+        cbClientes = new javax.swing.JComboBox<>();
+        cbVentas = new javax.swing.JComboBox<>();
+        jbFiltrar = new javax.swing.JButton();
+        txtCliente = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -100,12 +119,18 @@ public class VentaView extends javax.swing.JInternalFrame {
         txtId.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(0, 0, 204));
         txtId.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
 
         jbLimpiar.setBackground(new java.awt.Color(204, 204, 255));
         jbLimpiar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jbLimpiar.setForeground(new java.awt.Color(0, 0, 204));
         jbLimpiar.setText("Limpiar");
         jbLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimpiarActionPerformed(evt);
@@ -117,6 +142,7 @@ public class VentaView extends javax.swing.JInternalFrame {
         jbActualizar.setForeground(new java.awt.Color(0, 0, 204));
         jbActualizar.setText("Actualizar");
         jbActualizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbActualizarActionPerformed(evt);
@@ -128,6 +154,7 @@ public class VentaView extends javax.swing.JInternalFrame {
         jbGuardar.setForeground(new java.awt.Color(0, 0, 204));
         jbGuardar.setText("Guardar");
         jbGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
@@ -139,6 +166,7 @@ public class VentaView extends javax.swing.JInternalFrame {
         jbBuscar.setForeground(new java.awt.Color(0, 0, 204));
         jbBuscar.setText("Buscar");
         jbBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -157,41 +185,82 @@ public class VentaView extends javax.swing.JInternalFrame {
         jbBorrar.setForeground(new java.awt.Color(0, 0, 204));
         jbBorrar.setText("Borrar");
         jbBorrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
             }
         });
 
-        txtCliente.setBackground(new java.awt.Color(255, 255, 255));
-        txtCliente.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        txtCliente.setForeground(new java.awt.Color(0, 0, 204));
-        txtCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 204));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("ID CLIENTE:");
+        jLabel8.setText("CLIENTE:");
 
-        jbDetalleVenta.setBackground(new java.awt.Color(204, 204, 255));
-        jbDetalleVenta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jbDetalleVenta.setForeground(new java.awt.Color(0, 0, 204));
-        jbDetalleVenta.setText("Ingresar detalle de Venta");
-        jbDetalleVenta.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
-        jbDetalleVenta.addActionListener(new java.awt.event.ActionListener() {
+        jbSeleccionar.setBackground(new java.awt.Color(204, 204, 255));
+        jbSeleccionar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jbSeleccionar.setForeground(new java.awt.Color(0, 0, 204));
+        jbSeleccionar.setText("SELECCIONAR VENTA");
+        jbSeleccionar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        jbSeleccionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbDetalleVentaActionPerformed(evt);
+                jbSeleccionarActionPerformed(evt);
             }
         });
+
+        cbClientes.setForeground(new java.awt.Color(0, 0, 204));
+        cbClientes.setToolTipText("");
+
+        jbFiltrar.setForeground(new java.awt.Color(0, 0, 204));
+        jbFiltrar.setText("BUSCAR");
+        jbFiltrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbFiltrarActionPerformed(evt);
+            }
+        });
+
+        txtCliente.setForeground(new java.awt.Color(0, 0, 204));
+        txtCliente.setToolTipText("Ingresar apellido y presionar buscar");
+        txtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClienteKeyTyped(evt);
+            }
+        });
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BUSCAR POR APELLIDO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cbVentas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jbSeleccionar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -199,64 +268,67 @@ public class VentaView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbActivo)
-                            .addComponent(jbDetalleVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(195, 195, 195)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(220, 220, 220))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtCliente, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jdcFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 151, Short.MAX_VALUE)))
-                .addContainerGap())
+                                        .addComponent(jbFiltrar))
+                                    .addComponent(cbActivo)
+                                    .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jbBuscar)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbFiltrar))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbActivo))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbDetalleVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,70 +347,136 @@ public class VentaView extends javax.swing.JInternalFrame {
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
         // TODO add your handling code here:
-        if (txtId.getText() != null) {
-            int id = Integer.parseInt(txtId.getText());
-            Cliente idCliente = clienteData.buscarCliente(Integer.parseInt(txtCliente.getText()));
-            LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            boolean activo = cbActivo.isEnabled();
-            Venta venta = new Venta(id, fecha, idCliente, activo);
-            ventaData.modificarVenta(venta);
+        if (validarActualizar() == true) {
+            JOptionPane.showMessageDialog(this, "No se puede actualizar Venta");
+        } else {
+            if (txtId.getText() != null) {
+                int id = Integer.parseInt(txtId.getText());
+                Cliente idCliente = (Cliente) cbClientes.getSelectedItem();
+                LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                boolean activo = cbActivo.isEnabled();
+                Venta venta = new Venta(id, fecha, idCliente, activo);
+                ventaData.modificarVenta(venta);
+                jdcFecha.setMaxSelectableDate(new Date());
+                jdcFecha.setMinSelectableDate(new Date());
+            }
         }
-
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         txtId.setText("");
+        txtId.setBackground(Color.WHITE);
         txtCliente.setText("");
+        cbClientes.removeAllItems();
+        cbClientes.setBackground(Color.WHITE);
         jdcFecha.setCalendar(null);
-        cbActivo.doClick();
+        jdcFecha.setBackground(Color.WHITE);
+        cbActivo.setSelected(false);
+        cbActivo.setBackground(Color.WHITE);
+        jdcFecha.setMinSelectableDate(new Date());
+        jbSeleccionar.setVisible(false);
 
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        try {
-            int id = Integer.parseInt(txtId.getText());
-            Venta venta = ventaData.buscarVenta(id);
-            if (venta.getIdCliente() != null) {
-                txtId.setText(venta.getIdVenta() + "");
-                txtCliente.setText(venta.getIdCliente().getIdCliente() + "");
-                jdcFecha.setDate(java.sql.Date.valueOf(venta.getFecha()));
-                cbActivo.doClick();
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El campo Id debe contener un numero");
-        }
+        armarListaVentas();
+        jbSeleccionar.setVisible(true);
+        cbVentas.setVisible(true);
+
 
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
-        Cliente idCliente = clienteData.buscarCliente(Integer.parseInt(txtCliente.getText()));
-        LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        boolean activo = cbActivo.isEnabled();
-        Venta venta = new Venta(fecha, idCliente, activo);
-        ventaData.guardarVenta(venta);
-        txtId.setText(venta.getIdVenta() + "");
+        if (validarGuardar() == true) {
+            JOptionPane.showMessageDialog(this, "No se puede guardar Venta");
+        } else {
+            Cliente idCliente = (Cliente) cbClientes.getSelectedItem();
+            LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            boolean activo = cbActivo.isEnabled();
+            Venta venta = new Venta(fecha, idCliente, activo);
+            ventaData.guardarVenta(venta);
+            txtId.setText(venta.getIdVenta() + "");
+        }
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(txtId.getText());
-        ventaData.eliminarVenta(id);
+        if (validarActualizar() == true) {
+            JOptionPane.showMessageDialog(this, "Venta no se elimino");
+        } else {
+            int id = Integer.parseInt(txtId.getText());
+            ventaData.eliminarVenta(id);
+        }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
-    private void jbDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDetalleVentaActionPerformed
+    private void jbSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarActionPerformed
         // TODO add your handling code here:
-        DetalleVentaView dv = new DetalleVentaView();
-        Menu.desktop.add(dv);
-        dv.moveToFront();
-        dv.setVisible(true);
+        txtId.setBackground(Color.WHITE);
+        cbClientes.setBackground(Color.WHITE);
+        jdcFecha.setBackground(Color.WHITE);
+        cbActivo.setBackground(Color.WHITE);
 
-    }//GEN-LAST:event_jbDetalleVentaActionPerformed
+        Venta seleccionada = (Venta) cbVentas.getSelectedItem();
+        int id = seleccionada.getIdVenta();
+
+        Venta venta = ventaData.buscarVenta(id);
+        txtId.setText(venta.getIdVenta() + "");
+        cbClientes.setEditable(true);
+        cbClientes.setSelectedItem(venta.getIdCliente());
+        jdcFecha.setDate(java.sql.Date.valueOf(venta.getFecha()));
+        cbActivo.setSelected(true);
+        jbSeleccionar.setVisible(false);
+        cbVentas.setVisible(false);
+        cbVentas.removeAllItems();
+        Date fecha = jdcFecha.getDate();
+        jdcFecha.setMinSelectableDate(fecha);
+
+    }//GEN-LAST:event_jbSeleccionarActionPerformed
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean num = key >= 48 && key <= 57;
+        boolean retroceso = key == 8;
+        if (!(num || retroceso)) {
+            JOptionPane.showMessageDialog(this, "Este campo es solo numerico y no admite espacios");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void jbFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFiltrarActionPerformed
+        // TODO add your handling code here:
+        if (armarLista().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay coincidencias, reintente");
+        } else {
+            cbClientes.removeAllItems();
+            armarLista();
+        }
+
+    }//GEN-LAST:event_jbFiltrarActionPerformed
+
+    private void txtClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean may = key >= 65 && key <= 90;
+        boolean min = key >= 97 && key <= 122;
+        boolean validar = vTeclas(key);
+
+        if (!(may || min || validar)) {
+            JOptionPane.showMessageDialog(this, "Este campo solo admite caracteres");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtClienteKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbActivo;
+    private javax.swing.JComboBox<Cliente> cbClientes;
+    private javax.swing.JComboBox<Venta> cbVentas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -349,11 +487,113 @@ public class VentaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbBorrar;
     private javax.swing.JButton jbBuscar;
-    private javax.swing.JButton jbDetalleVenta;
+    private javax.swing.JButton jbFiltrar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbLimpiar;
+    private javax.swing.JButton jbSeleccionar;
     private com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
+
+    private List armarLista() {
+        String seleccionado = txtCliente.getText();
+        clientes = (ArrayList<Cliente>) clienteData.listarClientesXapellido(seleccionado);
+        for (Cliente aux : clientes) {
+            cbClientes.addItem(aux);
+        }
+        return clientes;
+    }
+
+    private void armarListaVentas() {
+        for (Venta aux : ventas) {
+            cbVentas.addItem(aux);
+        }
+    }
+
+    private boolean validarGuardar() {
+        boolean vacio = false;
+
+        if (cbClientes.getSelectedItem() == null) {
+            vacio = true;
+            cbClientes.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Cliente no es valido");
+        } else {
+            cbClientes.setBackground(Color.WHITE);
+        }
+        if (jdcFecha.getDate() == null) {
+            vacio = true;
+            jdcFecha.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "La fecha no es valida");
+        } else {
+            jdcFecha.setBackground(Color.WHITE);
+        }
+        if (!cbActivo.isSelected()) {
+            vacio = true;
+            cbActivo.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "Venta debe estar ACTIVA");
+        } else {
+            cbActivo.setBackground(Color.WHITE);
+        }
+
+        return vacio;
+    }
+
+    private boolean validarActualizar() {
+        boolean vacio = false;
+
+        if (txtId.getText().isEmpty()) {
+            vacio = true;
+            txtId.setBackground(Color.yellow);
+            JOptionPane.showMessageDialog(this, "El campo Id no es valido");
+        }
+        if (cbClientes.getSelectedItem() == null) {
+            vacio = true;
+            cbClientes.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "El campo Cliente no es valido");
+        } else {
+            cbClientes.setBackground(Color.WHITE);
+        }
+        if (jdcFecha.getDate() == null) {
+            vacio = true;
+            jdcFecha.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "La fecha no es valida");
+        } else {
+            jdcFecha.setBackground(Color.WHITE);
+        }
+        if (!cbActivo.isSelected()) {
+            vacio = true;
+            cbActivo.setBackground(Color.YELLOW);
+            JOptionPane.showMessageDialog(this, "Venta debe estar ACTIVA");
+        } else {
+            cbActivo.setBackground(Color.WHITE);
+        }
+
+        return vacio;
+    }
+
+    private boolean vTeclas(int key) {
+        boolean validar = false;
+        if (key == 32) {
+            boolean espacio = true;
+            validar = espacio;
+        }
+        if (key == 8) {
+            boolean retroceso = true;
+            validar = retroceso;
+        }
+        if (key == 11) {
+            boolean tab = true;
+            validar = tab;
+        }
+        if (key == 127) {
+            boolean sup = true;
+            validar = sup;
+        }
+        if (key == 10) {
+            boolean enter = true;
+            validar = enter;
+        }
+        return validar;
+    }
 }

@@ -40,12 +40,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jmMateria = new javax.swing.JMenu();
         jmiCompra = new javax.swing.JMenuItem();
+        jmiDetalleCompra = new javax.swing.JMenuItem();
         jmAlumno = new javax.swing.JMenu();
         jmiVenta = new javax.swing.JMenuItem();
+        jmiDetalleVenta = new javax.swing.JMenuItem();
         jmInscripcion = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenuItem();
         jmNotas = new javax.swing.JMenu();
         jmiProveedor = new javax.swing.JMenuItem();
+        jmProXProveedor = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
         jmiProducto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -100,6 +103,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jmMateria.add(jmiCompra);
 
+        jmiDetalleCompra.setText("Detalle de Compra");
+        jmiDetalleCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDetalleCompraActionPerformed(evt);
+            }
+        });
+        jmMateria.add(jmiDetalleCompra);
+
         jMenuBar1.add(jmMateria);
 
         jmAlumno.setForeground(new java.awt.Color(0, 0, 255));
@@ -113,6 +124,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jmAlumno.add(jmiVenta);
+
+        jmiDetalleVenta.setText("Detalle de Venta");
+        jmiDetalleVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDetalleVentaActionPerformed(evt);
+            }
+        });
+        jmAlumno.add(jmiDetalleVenta);
 
         jMenuBar1.add(jmAlumno);
 
@@ -141,6 +160,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jmNotas.add(jmiProveedor);
+
+        jmProXProveedor.setText("Productos por Proveedor");
+        jmProXProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProXProveedorActionPerformed(evt);
+            }
+        });
+        jmNotas.add(jmProXProveedor);
 
         jMenuBar1.add(jmNotas);
 
@@ -321,6 +348,33 @@ public class Menu extends javax.swing.JFrame {
         desktop.moveToFront(reporte);
     }//GEN-LAST:event_jmiProductosActionPerformed
 
+    private void jmProXProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProXProveedorActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ProductoXProveedorView pxp = new ProductoXProveedorView();
+        desktop.add(pxp);
+        desktop.moveToFront(pxp);
+    }//GEN-LAST:event_jmProXProveedorActionPerformed
+
+    private void jmiDetalleCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDetalleCompraActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        DetalleCompraView dc = new DetalleCompraView();
+        desktop.add(dc);
+        desktop.moveToFront(dc);
+    }//GEN-LAST:event_jmiDetalleCompraActionPerformed
+
+    private void jmiDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDetalleVentaActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        DetalleVentaView dv = new DetalleVentaView();
+        desktop.add(dv);
+        desktop.moveToFront(dv);
+    }//GEN-LAST:event_jmiDetalleVentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,10 +390,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jmInscripcion;
     private javax.swing.JMenu jmMateria;
     private javax.swing.JMenu jmNotas;
+    private javax.swing.JMenuItem jmProXProveedor;
     private javax.swing.JMenuItem jmiCliente;
     private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiCompra;
     private javax.swing.JMenuItem jmiCompras;
+    private javax.swing.JMenuItem jmiDetalleCompra;
+    private javax.swing.JMenuItem jmiDetalleVenta;
     private javax.swing.JMenuItem jmiProducto;
     private javax.swing.JMenuItem jmiProductos;
     private javax.swing.JMenuItem jmiProveedor;

@@ -70,7 +70,7 @@ public class DetalleDeCompraData {
             ps.setInt(3, detalle.getIdCompra().getIdCompra());
             ps.setInt(4, detalle.getIdProducto().getIdProducto());
             ps.setInt(5, detalle.getIdDetalle());
-
+            updateStockActualizar(detalle.getCantidad(), detalle.getIdProducto().getIdProducto(),detalle.getIdDetalle());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -173,6 +173,28 @@ public class DetalleDeCompraData {
     private void updateStock(int cantidad, int idProducto) {
         Producto pro = rProducto(idProducto);
         int stock = pro.getStock() + cantidad;
+        String sql = "UPDATE producto SET stock=? WHERE idProducto=?";
+
+        PreparedStatement ps = null;
+        try {
+            ps = c.prepareStatement(sql);
+
+            ps.setInt(1, stock);
+            ps.setInt(2, idProducto);
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder ala tabla detalle Compra" + ex.getMessage());
+        }
+    }
+    
+    private void updateStockActualizar(int cantidad, int idProducto, int id) {
+        Producto pro = rProducto(idProducto);
+        DetalleDeCompra dc = buscarDetalleCompra(id);
+        int stockActual = dc.getCantidad();
+        int stockNew = cantidad - stockActual;
+        int stock = pro.getStock() + stockNew;
         String sql = "UPDATE producto SET stock=? WHERE idProducto=?";
 
         PreparedStatement ps = null;

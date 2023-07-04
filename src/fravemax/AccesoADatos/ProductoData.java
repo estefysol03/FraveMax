@@ -1,7 +1,11 @@
 package fravemax.AccesoADatos;
 
 import fravemax.Entidades.Producto;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -56,7 +60,7 @@ public class ProductoData {
                 prod.setDescripcion(rs.getString("descripcion"));
                 prod.setPrecioActual(rs.getDouble("precioActual"));
                 prod.setStock(rs.getInt("stock"));
-      
+
             } else {
 
                 JOptionPane.showMessageDialog(null, "No existe el Producto");
@@ -92,6 +96,32 @@ public class ProductoData {
         }
         return productos;
     }
+    
+    public List<Producto> listarProductoXNombre(String nombre) {
+        List<Producto> productos = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM producto WHERE descripcion LIKE ?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, "%"+nombre+"%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Producto pro = new Producto();
+
+                pro.setIdProducto(rs.getInt("idProducto"));
+                pro.setDescripcion(rs.getString("descripcion"));
+                pro.setPrecioActual(rs.getDouble("precioActual"));
+                pro.setStock(rs.getInt("stock"));
+                pro.setEstado(true);
+                productos.add(pro);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto ");
+        }
+        return productos;
+    }
 
     //modifico un producto.
     public void modificarProducto(Producto prod) {
@@ -118,7 +148,7 @@ public class ProductoData {
         }
     }
 
-     public void eliminarProducto(int id) {
+    public void eliminarProducto(int id) {
         Producto pro = buscarProducto(id);
         try {
             String sql = " UPDATE producto SET estado =0 WHERE idProducto =? ";

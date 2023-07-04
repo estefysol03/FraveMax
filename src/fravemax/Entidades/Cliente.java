@@ -83,7 +83,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "[Id: " + idCliente + " Apellido: " + apellido + ", Nombre: " + nombre + ", Domicilio: " + domicilio + ", Telefono: " + telefono + "]\n";
+        return "[" + idCliente + "]" + " - Apellido: " + apellido + ", Nombre: " + nombre;
     }
 
 }

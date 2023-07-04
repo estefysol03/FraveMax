@@ -98,12 +98,39 @@ public class ClienteData {
         }
         return cliente;
     }
+    
+    public List<Cliente> listarClientesXapellido(String apellido) {
+        List<Cliente> clientes = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM cliente WHERE apellido LIKE ?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, "%"+apellido+"%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+
+                cliente.setIdCliente(rs.getInt("idCliente"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setDomicilio(rs.getString("domicilio"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setEstado(true);
+                clientes.add(cliente);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente " + ex);
+        }
+        return clientes;
+    }
 
     public void eliminarCliente(int id) {
         Cliente cli = new Cliente();
         cli = buscarCliente(id);
         try {
-            String sql = " UPDATE cliente SET estado=0 WHERE idCliente =? ";
+            String sql = " UPDATE cliente SET estado=0 WHERE idCliente =?";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, id);
 

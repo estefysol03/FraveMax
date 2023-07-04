@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-      </Properties>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -43,109 +36,144 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="doubleBuffered" type="boolean" value="false"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon = new ImageIcon(getClass().getResource(&quot;FraveMax.jpg&quot;));&#xa;Image image = icon.getImage();"/>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="DetalleCompraView_jPanel1"/>
       </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="41" max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="643" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" pref="466" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel3" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel8" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbActivo" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtIdProducto" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtIdCompra" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtCantidad" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtId" alignment="0" pref="77" max="32767" attributes="0"/>
-                                      <Component id="txtPrecioCosto" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbBuscar" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" pref="110" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jbGuardar" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jbActualizar" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jbLimpiar" min="-2" pref="95" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtId" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="txtIdCompra" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                              <Component id="cbCompra" min="-2" pref="167" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="cbProducto" min="-2" pref="267" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jbSeleccionar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel8" min="-2" pref="115" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtCantidad" min="-2" pref="77" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtPrecioCosto" min="-2" pref="77" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel6" min="-2" pref="115" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cbActivo" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="jbGuardar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbActualizar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbLimpiar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbBuscar" min="-2" pref="90" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtIdCompra" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="cbCompra" alignment="3" max="-2" attributes="0"/>
+                      <Component id="jbSeleccionar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cbProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel4" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="txtPrecioCosto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" pref="17" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtPrecioCosto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txtIdCompra" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="txtIdProducto" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" pref="17" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cbActivo" max="32767" attributes="0"/>
-                      <Component id="jLabel6" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel6" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="cbActivo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -153,8 +181,9 @@
                       <Component id="jbBorrar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jbActualizar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jbLimpiar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jbBuscar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="92" max="32767" attributes="0"/>
+                  <EmptySpace pref="94" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -200,19 +229,7 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="PRECIO COSTO"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="ID COMPRA"/>
+            <Property name="text" type="java.lang.String" value="P. COSTO:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtId">
@@ -232,6 +249,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPrecioCosto">
           <Properties>
@@ -250,24 +270,9 @@
               </Border>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtIdProducto">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Calibri" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-          </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPrecioCostoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbLimpiar">
           <Properties>
@@ -285,6 +290,9 @@
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
               </Border>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
           <Events>
@@ -308,6 +316,9 @@
                 <BevelBorder/>
               </Border>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbActualizarActionPerformed"/>
@@ -330,6 +341,9 @@
                 <BevelBorder/>
               </Border>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarActionPerformed"/>
@@ -351,6 +365,9 @@
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
               </Border>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
             </Property>
           </Properties>
           <Events>
@@ -393,6 +410,9 @@
                 <BevelBorder/>
               </Border>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBorrarActionPerformed"/>
@@ -407,7 +427,7 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="ID PRODUCTO"/>
+            <Property name="text" type="java.lang.String" value="PRODUCTO:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCantidad">
@@ -427,6 +447,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCantidadKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -437,11 +460,12 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="CANTIDAD"/>
+            <Property name="text" type="java.lang.String" value="CANTIDAD:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtIdCompra">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
@@ -451,11 +475,71 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Click para buscar id Compra"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
               </Border>
             </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtIdCompraMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbSeleccionar">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Seleccionar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="10"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSeleccionarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbCompra">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Compra&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbProducto">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbProductoActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Producto&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="ID COMPRA:"/>
           </Properties>
         </Component>
       </SubComponents>

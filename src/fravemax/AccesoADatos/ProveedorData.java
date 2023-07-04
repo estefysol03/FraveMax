@@ -141,5 +141,31 @@ public class ProveedorData {
         }
         return proveedores;
     }
+    
+    public List<Proveedor> listarProveedoresXNombre(String razon) {
+        List<Proveedor> proveedores = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM proveedor WHERE razonSocial LIKE ?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, "%"+razon+"%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Proveedor prov = new Proveedor();
+
+                prov.setIdProveedor(rs.getInt("idProveedor"));
+                prov.setRazonSocial(rs.getString("razonSocial"));
+                prov.setDomicilio(rs.getString("domicilio"));
+                prov.setTelefono(rs.getString("telefono"));
+                prov.setEstado(true);
+                proveedores.add(prov);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor "+ex);
+        }
+        return proveedores;
+    }
 
 }
