@@ -28,7 +28,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        ImageIcon icon = new ImageIcon(getClass().getResource("FraveMax.jpg"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/FraveMax.jpg"));
         Image image = icon.getImage();
         desktop = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){

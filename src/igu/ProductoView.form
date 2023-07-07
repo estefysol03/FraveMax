@@ -56,55 +56,69 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon = new ImageIcon(getClass().getResource(&quot;FraveMax.jpg&quot;));&#xa;Image image = icon.getImage();"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon = new ImageIcon(getClass().getResource(&quot;/img/FraveMax.jpg&quot;));&#xa;Image image = icon.getImage();"/>
       </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" pref="686" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel3" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel8" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtPActual" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="txtStock" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="cbActivo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jbGuardar" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jbActualizar" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jbLimpiar" min="-2" pref="90" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="txtId" min="-2" pref="77" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
-                                          <Component id="jbBuscar" min="-2" pref="91" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtDescripcion" min="-2" pref="313" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jLabel3" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jLabel8" alignment="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cbProductos" min="-2" pref="220" max="-2" attributes="0"/>
-                                      <Component id="jbSeleccionar" min="-2" pref="198" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txtPActual" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Component id="txtStock" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Component id="cbActivo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="txtId" min="-2" pref="77" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jbBuscar" min="-2" pref="91" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="txtDescripcion" min="-2" pref="285" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="cbProductos" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                                  <Component id="jbSeleccionar" min="-2" pref="198" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                          <Component id="jbGuardar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbActualizar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbLimpiar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="186" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -119,9 +133,9 @@
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbBuscar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="txtId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbSeleccionar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbSeleccionar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -129,10 +143,10 @@
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbProductos" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtPActual" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -144,12 +158,12 @@
                       <Component id="jLabel6" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="cbActivo" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jbGuardar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jbBorrar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jbActualizar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jbLimpiar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jbGuardar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="84" max="32767" attributes="0"/>
               </Group>
@@ -185,6 +199,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/key-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ID:"/>
           </Properties>
         </Component>
@@ -197,6 +214,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/money-withdraw-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="PRECIO ACTUAL:"/>
           </Properties>
         </Component>
@@ -274,6 +294,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/trash-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Limpiar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -298,6 +321,9 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/data-regular-24.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -324,6 +350,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/save-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -349,6 +378,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/find-regular (2).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -368,6 +400,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -379,6 +412,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/checkbox-checked-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ACTIVO:"/>
           </Properties>
         </Component>
@@ -392,6 +428,9 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/eraser-regular-24.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Borrar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -416,6 +455,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/list-plus-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="STOCK:"/>
           </Properties>
         </Component>
@@ -447,6 +489,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/book-content-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="DESCRIPCION:"/>
           </Properties>
         </Component>
@@ -467,6 +512,9 @@
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/checkbox-checked-regular-24.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SELECCIONAR"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

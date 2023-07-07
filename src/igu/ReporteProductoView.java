@@ -39,7 +39,7 @@ public class ReporteProductoView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("FraveMax.jpg"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/FraveMax.jpg"));
         Image image = icon.getImage();
         jPanel1 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g){

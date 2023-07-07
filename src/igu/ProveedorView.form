@@ -49,7 +49,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon = new ImageIcon(getClass().getResource(&quot;FraveMax.jpg&quot;));&#xa;Image image = icon.getImage();"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon = new ImageIcon(getClass().getResource(&quot;/img/FraveMax.jpg&quot;));&#xa;Image image = icon.getImage();"/>
       </AuxValues>
 
       <Layout>
@@ -58,7 +58,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" pref="686" max="32767" attributes="0"/>
+                      <Component id="jLabel2" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
@@ -68,39 +68,36 @@
                               <Component id="jLabel8" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jbGuardar" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbActualizar" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbLimpiar" min="-2" pref="95" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cbActivo" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="txtId" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <EmptySpace pref="112" max="32767" attributes="0"/>
+                                  <Component id="jbBuscar" min="-2" pref="91" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cbActivo" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="txtId" min="-2" pref="77" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jbBuscar" min="-2" pref="91" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtDomicilio" alignment="0" pref="313" max="32767" attributes="0"/>
-                                      <Component id="txtTelefono" pref="313" max="32767" attributes="0"/>
-                                      <Component id="txtRazonSocial" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cbProveedor" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jlProveedor" min="-2" pref="211" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtDomicilio" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtRazonSocial" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cbProveedor" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jlProveedor" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="jbGuardar" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jbBorrar" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jbActualizar" min="-2" pref="107" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jbLimpiar" min="-2" pref="95" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -117,31 +114,32 @@
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtId" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jlProveedor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jlProveedor" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jbBuscar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtRazonSocial" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDomicilio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtTelefono" max="32767" attributes="0"/>
+                      <Component id="jLabel7" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -155,7 +153,7 @@
                       <Component id="jbActualizar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jbLimpiar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="81" max="32767" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -189,6 +187,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/key-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ID:"/>
           </Properties>
         </Component>
@@ -201,6 +202,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/home-circle-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="DOMICILIO:"/>
           </Properties>
         </Component>
@@ -275,6 +279,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/trash-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Limpiar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -299,6 +306,9 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/data-regular-24.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -325,6 +335,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/save-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -350,6 +363,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/find-regular (2).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -369,6 +385,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -380,6 +397,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/check-square-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ACTIVO:"/>
           </Properties>
         </Component>
@@ -393,6 +413,9 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/eraser-regular-24.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Borrar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -417,6 +440,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/phone-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="TELEFONO:"/>
           </Properties>
         </Component>
@@ -448,6 +474,9 @@
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/receipt-regular-24.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="RAZON SOCIAL:"/>
           </Properties>
         </Component>
@@ -471,6 +500,9 @@
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/checkbox-checked-regular-24.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SELECCIONAR PROVEEDOR"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
