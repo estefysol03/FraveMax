@@ -195,6 +195,35 @@ public class ProductoXProveedorData {
         return detalle;
     }
     
+    public List<ProductoXProveedor> listarDetalleXProveedor1(int id) {
+        List<ProductoXProveedor> detalle = new ArrayList<>();
+
+        try {
+            //String sql = "SELECT * FROM productoxproveedor WHERE idProveedor=?";
+            String sql = "SELECT productoxproveedor.*"
+                    + "FROM producto JOIN productoxproveedor ON (producto.idProducto = productoxproveedor.idProducto)"
+                    + "WHERE idProveedor = ?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            ProductoXProveedor producto;
+            Producto p;
+
+            while (rs.next()) {
+                producto = new ProductoXProveedor();
+                p = rProducto(rs.getInt("idProducto"));
+                producto.setIdProducto(p);
+                producto.setPrecioCosto(rs.getDouble("precioCosto"));
+                detalle.add(producto);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto ");
+        }
+        return detalle;
+    }
+    
     public List<ProductoXProveedor> listarProductos(){
         List<ProductoXProveedor> pxp = new ArrayList();
         

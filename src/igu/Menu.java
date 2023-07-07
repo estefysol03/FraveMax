@@ -51,12 +51,13 @@ public class Menu extends javax.swing.JFrame {
         jmProXProveedor = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
         jmiProducto = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmiReportes = new javax.swing.JMenu();
         jmiCompras = new javax.swing.JMenuItem();
         jmiVentas = new javax.swing.JMenuItem();
         jmiClientes = new javax.swing.JMenuItem();
         jmiProveedores = new javax.swing.JMenuItem();
         jmiProductos = new javax.swing.JMenuItem();
+        jmProductoXProveedor = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -185,9 +186,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmConsultas);
 
-        jMenu2.setForeground(new java.awt.Color(0, 0, 255));
-        jMenu2.setText("Reportes");
-        jMenu2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jmiReportes.setForeground(new java.awt.Color(0, 0, 255));
+        jmiReportes.setText("Reportes");
+        jmiReportes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmiCompras.setText("Compras");
         jmiCompras.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +196,7 @@ public class Menu extends javax.swing.JFrame {
                 jmiComprasActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiCompras);
+        jmiReportes.add(jmiCompras);
 
         jmiVentas.setText("Ventas");
         jmiVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +204,7 @@ public class Menu extends javax.swing.JFrame {
                 jmiVentasActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiVentas);
+        jmiReportes.add(jmiVentas);
 
         jmiClientes.setText("Clientes");
         jmiClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +212,7 @@ public class Menu extends javax.swing.JFrame {
                 jmiClientesActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiClientes);
+        jmiReportes.add(jmiClientes);
 
         jmiProveedores.setText("Proveedores");
         jmiProveedores.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +220,7 @@ public class Menu extends javax.swing.JFrame {
                 jmiProveedoresActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiProveedores);
+        jmiReportes.add(jmiProveedores);
 
         jmiProductos.setText("Productos");
         jmiProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -227,9 +228,17 @@ public class Menu extends javax.swing.JFrame {
                 jmiProductosActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiProductos);
+        jmiReportes.add(jmiProductos);
 
-        jMenuBar1.add(jMenu2);
+        jmProductoXProveedor.setText("Producto por Proveedor");
+        jmProductoXProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductoXProveedorActionPerformed(evt);
+            }
+        });
+        jmiReportes.add(jmProductoXProveedor);
+
+        jMenuBar1.add(jmiReportes);
 
         setJMenuBar(jMenuBar1);
 
@@ -375,6 +384,15 @@ public class Menu extends javax.swing.JFrame {
         desktop.moveToFront(dv);
     }//GEN-LAST:event_jmiDetalleVentaActionPerformed
 
+    private void jmProductoXProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductoXProveedorActionPerformed
+        // TODO add your handling code here:
+        desktop.removeAll();
+        desktop.repaint();
+        ReporteProductoProveedorView pxp = new ReporteProductoProveedorView();
+        desktop.add(pxp);
+        desktop.moveToFront(pxp);
+    }//GEN-LAST:event_jmProductoXProveedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,7 +400,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jmAlumno;
@@ -391,6 +408,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jmMateria;
     private javax.swing.JMenu jmNotas;
     private javax.swing.JMenuItem jmProXProveedor;
+    private javax.swing.JMenuItem jmProductoXProveedor;
     private javax.swing.JMenuItem jmiCliente;
     private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiCompra;
@@ -401,6 +419,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiProductos;
     private javax.swing.JMenuItem jmiProveedor;
     private javax.swing.JMenuItem jmiProveedores;
+    private javax.swing.JMenu jmiReportes;
     private javax.swing.JMenuItem jmiVenta;
     private javax.swing.JMenuItem jmiVentas;
     private javax.swing.JMenu salir;
